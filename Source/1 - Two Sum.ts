@@ -11,6 +11,7 @@
  * - -109 \<= target \<= 109
  * - Only one valid answer exists.
  */
+ 
 export function twoSum(values: number[], target: number): [number, number] {
   const remainderLookup: Map<number, number> = new Map();
 
@@ -20,7 +21,8 @@ export function twoSum(values: number[], target: number): [number, number] {
     if (match !== undefined)
       return [match, index];
     
-    remainderLookup.set(target - value, index);
+    const remainder = target - value;
+    remainderLookup.set(remainder, index);
   }
   
   throw new Error('Should return value');
