@@ -11,8 +11,19 @@
  * - -109 \<= target \<= 109
  * - Only one valid answer exists.
  */
-export function twoSum(values: number[], target: number): number[] {
-  values;
-  target;
-  return [];
+ 
+export function twoSum(values: number[], target: number): [number, number] {
+  const remainderLookup: Map<number, number> = new Map();
+
+  for (const [index, value] of values.entries()) {
+    const match = remainderLookup.get(value);
+    
+    if (match !== undefined)
+      return [match, index];
+    
+    const remainder = target - value;
+    remainderLookup.set(remainder, index);
+  }
+  
+  throw new Error('Should return value');
 }
