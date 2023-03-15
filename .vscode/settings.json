@@ -1,0 +1,13 @@
+{
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "explorer.excludeGitIgnore": false,
+    "explorer.fileNesting.enabled": true,
+    "files.eol": "\n",
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.test.ts",
+        "package.json": "package-lock.json, yarn.lock, .eslintrc, .gitignore, babel.config.json, jest.config.json, tsconfig.json, LICENSE, README",
+    }
+}

@@ -1,0 +1,8 @@
+yarn 
+to install
+
+yarn unit-test
+to test all
+
+yarn file-test "filename.test.js"
+to test file

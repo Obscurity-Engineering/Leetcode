@@ -1,0 +1,47 @@
+{
+    "name": "leetcode",
+    "version": "0.1.0",
+    "description": "Repository for collaboration between Zach and Grey in Leetcode problems.",
+    "scripts": {
+      "unit-test": "yarn clean && yarn transform && yarn execute-unit-test",
+      "file-test": "yarn clean && yarn transform && yarn execute-file-test",
+
+      "transform": "npx babel ./Source --out-dir ./Build --config-file ./babel.config.json --extensions \".ts\" --copy-files",
+      "clean": "if exist Build rmdir /s /q Build 2>nul",
+      "check-types": "yarn run tsc --noEmit",
+      "execute-unit-test": "yarn jest --config=./jest.config.json --detectOpenHandles Build/",
+      "execute-file-test": "yarn jest --config=./jest.config.json --detectOpenHandles"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Obscurity-Engineering/Leetcode.git"
+    },
+    "author": "Zachary Stanford & Grey Johnson",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/Obscurity-Engineering/Leetcode/issues"
+    },
+    "homepage": "https://github.com/Obscurity-Engineering/Leetcode#readme",
+    "devDependencies": {
+      "@babel/cli": "^7.19.3",
+      "@babel/core": "^7.20.5",
+      "@babel/plugin-transform-modules-commonjs": "^7.19.6",
+      "@babel/preset-env": "^7.20.2",
+      "@babel/preset-typescript": "^7.18.6",
+      "@types/jest": "^29.2.4",
+      "@types/prompts": "^2.4.2",
+      "@typescript-eslint/eslint-plugin": "^5.46.1",
+      "@typescript-eslint/parser": "^5.46.1",
+      "babel-jest": "^29.0.2",
+      "babel-plugin-dynamic-import-node": "^2.3.3",
+      "babel-plugin-module-resolver": "^5.0.0",
+      "babel-plugin-transform-imports": "^2.0.0",
+      "dotenv": "^16.0.1",
+      "eslint": "^8.30.0",
+      "eslint-plugin-jest": "^27.1.7",
+      "eslint-plugin-tsdoc": "^0.2.17",
+      "jest": "^29.3.1",
+      "ts-node": "^10.9.1",
+      "typescript": "^4.9.4"
+    }
+  }

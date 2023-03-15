@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "outDir": "./Build",
+      "baseUrl": ".",
+      "allowJs": false,
+      "lib": ["DOM", "ESNext"],
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "target": "ESNext",
+      "strict": true,
+      "experimentalDecorators": true,
+      "incremental": true,
+      "module": "ESNext",
+    },
+    "include": ["./Source/**/*"],
+    "exclude": ["./node_modules"]
+  }

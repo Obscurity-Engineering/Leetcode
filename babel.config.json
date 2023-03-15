@@ -1,0 +1,22 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-typescript"],  
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./"]
+    }],
+    ["dynamic-import-node", { 
+      "noInterop": true 
+    }]
+  ],
+  "targets": {
+    "node": "current"
+  },
+  "retainLines": true,
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  }
+}
