@@ -1,5 +1,5 @@
 /**
- * {@link https://leetcode.com/problems/roman-to-integer/| Roman to Integer}
+ * {@link https://leetcode.com/problems/roman-to-integer/ | Roman to Integer}
  * 
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  * 
@@ -27,6 +27,34 @@
  * - It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  */
 export function romanToInt(romanNumeral: string): number {
-  romanNumeral;
-  return -1;
-}
+      let numberTotal = 0;
+    
+      const numerals: Record<string, number> = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+      };
+    
+      let index = 0;
+      while(index < romanNumeral.length) {
+     
+        const currentValue = numerals[romanNumeral[index]];
+        const nextValue = numerals[romanNumeral[index + 1]];
+    
+        if(currentValue < nextValue) {
+          numberTotal += nextValue - currentValue;
+          index += 2;
+        } else {
+          numberTotal += currentValue;
+          index++;
+        }
+    
+      }
+    
+      return numberTotal;
+    
+    }
