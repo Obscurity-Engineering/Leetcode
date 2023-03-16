@@ -1,5 +1,5 @@
 /** 
- * {@link https://leetcode.com/problems/longest-common-prefix/| Longest Common Prefix}
+ * {@link https://leetcode.com/problems/longest-common-prefix/ | Longest Common Prefix}
  * 
  * Write a function to find the longest common prefix string amongst an array of strings.
  * 
@@ -11,6 +11,17 @@
  * - words[i] consists of only lower-case English letters.
  */
 export function longestCommonPrefix(words: string[]): string {
-  words;
-  return '';
+  const baseWord = words.at(0) ?? '';
+
+  for (let prefixLength = 1; prefixLength <= baseWord.length; prefixLength++) {
+    const prefix = baseWord.slice(0, prefixLength);
+
+    const isMissingPrefix = (word: string) => 
+      word.slice(0, prefix.length) !== prefix;
+
+    if (words.some(isMissingPrefix))
+      return baseWord.slice(0, prefixLength - 1);
+  }
+
+  return baseWord;
 }

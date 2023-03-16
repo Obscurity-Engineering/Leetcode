@@ -1,5 +1,5 @@
 /**
- * {@link https://leetcode.com/problems/palindrome-number/| Palindrome Number}
+ * {@link https://leetcode.com/problems/palindrome-number/ | Palindrome Number}
  * 
  * Given an integer `x`, return `true` *if `x` is a palindrome, and `false` otherwise*.
  * 
@@ -11,7 +11,14 @@
  * - -2^31 \<= x \<= 2^31 - 1
  */
 
-export function isPalindrome(value: number): boolean {
-  value;
+export function isPalindrome(x: number): boolean {
+  const value = x.toString();
+  const lengthOfHalfString = Math.floor(value.length / 2);
+  
+  for (let i = 0; i < lengthOfHalfString; i++) {
+    if (value.at(i) !== value.at(-1 - i))
+      return false;
+  }
+  
   return true;
 }
