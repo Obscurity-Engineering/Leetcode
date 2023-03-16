@@ -27,44 +27,34 @@
  * - It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  */
 export function romanToInt(romanNumeral: string): number {
-
-  // I: V (5), X (10), Neither (1) - if we encounter these two numeral patterns, move forward twice
-  // X: L (5), C (100), Neither (10)
-  // C: D (500), M (1000), Neither (100)
-  // Match the 1 or 2 digit pattern to a number, add that number to the final result
-
-  let numberTotal = 0;
-
-  // Struggled with this syntax in first try
-  const numerals: { [key: string]: number } = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
-  };
-
-
-  // Concept I missed in first try: The only time current will be less than the next value is when we have one of the 9 weird cases, so subtract and add.
-  let index = 0;
-  while(index < romanNumeral.length) {
-
-    const currentValue = numerals[romanNumeral[index]];
-    const nextValue = numerals[romanNumeral[index + 1]];
-
-    if(currentValue < nextValue) {
-      numberTotal += nextValue - currentValue;
-      index += 2;
-    } else {
-      numberTotal += currentValue;
-      index++;
+      let numberTotal = 0;
+    
+      const numerals: Record<string, number> = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+      };
+    
+      let index = 0;
+      while(index < romanNumeral.length) {
+     
+        const currentValue = numerals[romanNumeral[index]];
+        const nextValue = numerals[romanNumeral[index + 1]];
+    
+        if(currentValue < nextValue) {
+          numberTotal += nextValue - currentValue;
+          index += 2;
+        } else {
+          numberTotal += currentValue;
+          index++;
+        }
+    
+      }
+    
+      return numberTotal;
+    
     }
-
-  }
-
-
-  return numberTotal;
-
-}
