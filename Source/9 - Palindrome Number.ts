@@ -12,13 +12,13 @@
 */
 
 export function isPalindrome(x: number): boolean {
-    const value = x.toString();
-    const lengthOfHalfString = Math.floor(value.length / 2);
+  const value = x.toString();
+  const lengthOfHalfString = Math.floor(value.length / 2);
     
-    for (let i = 0; i < lengthOfHalfString; i++) {
-        if (value.at(i) !== value.at(-1 - i))
-        return false;
-    }
+  for (let i = 0; i < lengthOfHalfString; i++) {
+    if (value.at(i) !== value.at(-1 - i))
+      return false;
+  }
     
-    return true;
+  return true;
 }

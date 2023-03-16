@@ -12,18 +12,18 @@
 */
 export function longestCommonPrefix(words: string[]): string {
     
-    const baseWord = words.at(0) ?? '';
+  const baseWord = words.at(0) ?? '';
     
-    for (let prefixLength = 1; prefixLength <= baseWord.length; prefixLength++) {
-        const prefix = baseWord.slice(0, prefixLength);
+  for (let prefixLength = 1; prefixLength <= baseWord.length; prefixLength++) {
+    const prefix = baseWord.slice(0, prefixLength);
         
-        const isMissingPrefix = (word: string) => 
-        word.slice(0, prefix.length) !== prefix;
+    const isMissingPrefix = (word: string) => 
+      word.slice(0, prefix.length) !== prefix;
         
-        if (words.some(isMissingPrefix))
-        return baseWord.slice(0, prefixLength - 1);
-    }
+    if (words.some(isMissingPrefix))
+      return baseWord.slice(0, prefixLength - 1);
+  }
     
-    return baseWord;
+  return baseWord;
 }
 
