@@ -1,5 +1,5 @@
 /**
- * {@link https://leetcode.com/problems/palindrome-number/| Palindrome Number}
+ * {@link https://leetcode.com/problems/palindrome-number/ | Palindrome Number}
  * 
  * Given an integer `x`, return `true` *if `x` is a palindrome, and `false` otherwise*.
  * 
@@ -12,6 +12,24 @@
  */
 
 export function isPalindrome(value: number): boolean {
-  value;
+  // Convert to String: O(n) time complexity, O(1) space
+  // Don't convert to String: O(n) to separate digits, O(n) to traverse digits, O(n) space to store digits in array for traversal
+  const valueString: string = value.toString();
+
+  let leftPointer = 0;
+  let rightPointer = valueString.length - 1;
+
+  while(leftPointer < rightPointer) {
+    const leftDigit = parseInt(valueString[leftPointer]);
+    const rightDigit = parseInt(valueString[rightPointer]);
+
+    if(leftDigit !== rightDigit)
+      return false;
+
+    leftPointer++;
+    rightPointer--;
+  }
+
   return true;
+
 }
