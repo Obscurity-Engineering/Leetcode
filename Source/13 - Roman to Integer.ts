@@ -27,27 +27,34 @@
  * - It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  */
 export function romanToInt(romanNumeral: string): number {
-  let sum = 0;
-  for (let i = 0; i < romanNumeral.length; i++) {
-    const glyph = romanNumeral.at(i) ?? '';
-    const value = glyphLookup.get(glyph) ?? 0;
+      let numberTotal = 0;
     
-    const nextGlyph = romanNumeral.at(i + 1) ?? '';
-    const nextValue = glyphLookup.get(nextGlyph) ?? NaN;
-
-    const isSubtractionCase = nextValue > value; 
+      const numerals: Record<string, number> = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
+      };
     
-    sum += isSubtractionCase ? -value : value;
-  }
-  return sum;
-}
-
-const glyphLookup = new Map([
-  ['I', 1],
-  ['V', 5],
-  ['X', 10],
-  ['L', 50],
-  ['C', 100],
-  ['D', 500],
-  ['M', 1000]
-]);
+      let index = 0;
+      while(index < romanNumeral.length) {
+     
+        const currentValue = numerals[romanNumeral[index]];
+        const nextValue = numerals[romanNumeral[index + 1]];
+    
+        if(currentValue < nextValue) {
+          numberTotal += nextValue - currentValue;
+          index += 2;
+        } else {
+          numberTotal += currentValue;
+          index++;
+        }
+    
+      }
+    
+      return numberTotal;
+    
+    }
