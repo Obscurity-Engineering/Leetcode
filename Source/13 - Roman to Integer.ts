@@ -27,34 +27,34 @@
  * - It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  */
 export function romanToInt(romanNumeral: string): number {
-      let numberTotal = 0;
+  let numberTotal = 0;
     
-      const numerals: Record<string, number> = {
-        I: 1,
-        V: 5,
-        X: 10,
-        L: 50,
-        C: 100,
-        D: 500,
-        M: 1000,
-      };
+  const numerals: Record<string, number> = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
     
-      let index = 0;
-      while(index < romanNumeral.length) {
+  let index = 0;
+  while(index < romanNumeral.length) {
      
-        const currentValue = numerals[romanNumeral[index]];
-        const nextValue = numerals[romanNumeral[index + 1]];
+    const currentValue = numerals[romanNumeral[index]];
+    const nextValue = numerals[romanNumeral[index + 1]];
     
-        if(currentValue < nextValue) {
-          numberTotal += nextValue - currentValue;
-          index += 2;
-        } else {
-          numberTotal += currentValue;
-          index++;
-        }
-    
-      }
-    
-      return numberTotal;
-    
+    if(currentValue < nextValue) {
+      numberTotal += nextValue - currentValue;
+      index += 2;
+    } else {
+      numberTotal += currentValue;
+      index++;
     }
+    
+  }
+    
+  return numberTotal;
+    
+}
