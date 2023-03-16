@@ -5,7 +5,9 @@ describe('strStr', () => {
     ['sadbutsad', 'sad', 0],
     ['leetcode', 'leeto', -1],
     ['helloworld', 'world', 5] // Custom test
-  ])('In %p, the first occurrence of %p should start at index %p', (haystack, needle, output) => {
-    expect(strStr(haystack, needle)).toBe(output);
-  });
+  ])(
+    'In %p, the first occurrence of %p should start at index %p', 
+    (haystack, needle, output) => {
+      expect(strStr(haystack, needle)).toBe(output);
+    });
 });
