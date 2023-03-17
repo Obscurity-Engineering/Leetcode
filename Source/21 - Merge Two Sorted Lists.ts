@@ -13,9 +13,33 @@
  * - Both `list1` and `list2` are sorted in *non-decreasing* order.
 */
 export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-  list1;
-  list2;
-  return null;
+  const headNode = new ListNode();
+  let sortedListPointer = headNode;
+
+  while(list1 || list2) {
+
+    if(!list1) {
+      sortedListPointer.next = list2;
+      return headNode.next;
+    }
+
+    if(!list2) {
+      sortedListPointer.next = list1;
+      return headNode.next;
+    }
+
+    if(list1.val > list2.val) {
+      sortedListPointer.next = list2;
+      list2 = list2.next;
+    } else {
+      sortedListPointer.next = list1;
+      list1 = list1.next;
+    }
+
+    sortedListPointer = sortedListPointer.next;
+  }
+  
+  return headNode.next;
 }
 
 // Provided
