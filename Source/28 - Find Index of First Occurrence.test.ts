@@ -4,7 +4,8 @@ describe('strStr', () => {
   test.each([
     ['sadbutsad', 'sad', 0],
     ['leetcode', 'leeto', -1],
-    ['helloworld', 'world', 5] // Custom test
+    ['helloworld', 'world', 5], // Custom test
+    ['mississippi', 'issip', 4] // Leetcode test case I failed initially
   ])(
     'In %p, the first occurrence of %p should start at index %p', 
     (haystack, needle, output) => {
