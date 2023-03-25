@@ -10,7 +10,16 @@
  * - `haystack` and `needle` consist of only lowercase English characters.
  */
 export function strStr(haystack: string, needle: string): number {
-  haystack;
-  needle;
+  /**
+   * In production code:
+   * return haystack.indexOf(needle);
+   */
+
+  const needleLength = needle.length;
+  for (let i = 0; i <= haystack.length - needleLength; i++) {
+    if (haystack.slice(i, i + needleLength) === needle)
+      return i;
+  }
+
   return -1;
 }

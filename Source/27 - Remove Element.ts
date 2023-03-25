@@ -22,7 +22,12 @@
  * - `0 \<= val \<= 100`
  */
 export function removeElement(nums: number[], val: number): number {
-  nums;
-  val;
-  return -1;
+  let sortedSectionEnd = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[sortedSectionEnd] = nums[i];
+      sortedSectionEnd += 1;
+    }
+  }
+  return sortedSectionEnd;
 }

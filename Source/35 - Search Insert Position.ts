@@ -14,7 +14,22 @@
  * - `-10^4 \<= target \<= 10^4`
  */
 export function searchInsert(nums: number[], target: number): number {
-  nums;
-  target;
-  return -1;
+  let left = 0;
+  let right = nums.length;
+
+  while (right - left > 1) {
+    const comparisonIndex = Math.floor((left + right) / 2);
+    const value = nums[comparisonIndex];
+
+    if (value === target)
+      return comparisonIndex;
+    
+    if (value < target)
+      left = comparisonIndex;
+
+    if (value > target)
+      right = comparisonIndex;
+  }
+
+  return nums[left] >= target ? left : right;
 }

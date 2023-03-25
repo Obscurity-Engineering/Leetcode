@@ -22,6 +22,14 @@
  * - `nums` is sorted in **non-decreasing** order.
  */
 export function removeDuplicates(nums: number[]): number {
-  nums;
-  return -1;
+  let value = nums[0];
+  let sortedSectionEnd = 1;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== value) {
+      value = nums[i];
+      nums[sortedSectionEnd] = value;
+      sortedSectionEnd += 1;
+    }
+  }
+  return sortedSectionEnd;
 }
