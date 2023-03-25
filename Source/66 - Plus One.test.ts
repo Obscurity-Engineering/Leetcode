@@ -8,6 +8,6 @@ describe('plusOne', () => {
   ])(
     '%p + 1 = %p', 
     (input, output) => {
-      expect(plusOne(input)).toBe(output);
+      expect(plusOne(input)).toEqual(output);
     });
 });
