@@ -13,7 +13,7 @@
  * - `nums` contains **distinct** values sorted in **ascending** order.
  * - `-10^4 \<= target \<= 10^4`
  */
-export function searchInsert(nums: number[], target: number): number {
+export function searchInsert_Zach(nums: number[], target: number): number {
   let left = 0;
   let right = nums.length - 1;
 
@@ -30,6 +30,26 @@ export function searchInsert(nums: number[], target: number): number {
     }
   }
 
-  return left; // I implemented everything correctly, but couldn't figure out what to return until I guessed left, so I missed that concept when stepping through examples.
+  return left;
+}
 
+export function searchInsert_Grey(nums: number[], target: number): number {
+  let left = 0;
+  let right = nums.length;
+
+  while (right - left > 1) {
+    const comparisonIndex = Math.floor((left + right) / 2);
+    const value = nums[comparisonIndex];
+
+    if (value === target)
+      return comparisonIndex;
+    
+    if (value < target)
+      left = comparisonIndex;
+
+    if (value > target)
+      right = comparisonIndex;
+  }
+
+  return nums[left] >= target ? left : right;
 }

@@ -21,7 +21,7 @@
  * - `0 \<= nums[i] \<= 50`
  * - `0 \<= val \<= 100`
  */
-export function removeElement(nums: number[], val: number): number {
+export function removeElement_Zach(nums: number[], val: number): number {
   let keepers = 0;
 
   for(let index = 0; index < nums.length; index++) {
@@ -33,4 +33,15 @@ export function removeElement(nums: number[], val: number): number {
   }
 
   return keepers;
+}
+
+export function removeElement_Grey(nums: number[], val: number): number {
+  let sortedSectionEnd = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[sortedSectionEnd] = nums[i];
+      sortedSectionEnd += 1;
+    }
+  }
+  return sortedSectionEnd;
 }

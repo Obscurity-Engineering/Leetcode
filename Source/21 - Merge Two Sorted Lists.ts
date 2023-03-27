@@ -12,7 +12,7 @@
  * - `-100 \<= Node.val \<= 100`
  * - Both `list1` and `list2` are sorted in *non-decreasing* order.
 */
-export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+export function mergeTwoLists_Zach(list1: ListNode | null, list2: ListNode | null): ListNode | null {
   const headNode = new ListNode();
   let sortedListPointer = headNode;
 
@@ -41,6 +41,46 @@ export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): L
   
   return headNode.next;
 }
+
+export function mergeTwoLists_Grey(list1: OptionalNode, list2: OptionalNode): OptionalNode {
+  if (list1 === null || list2 === null)
+    return list1 ?? list2;
+
+  let resultHead: OptionalNode;
+  let resultTail: OptionalNode;
+  let head1: OptionalNode;
+  let head2: OptionalNode;
+
+  head1 = list1;
+  head2 = list2;
+  if (head1.val <= head2.val) {
+    resultHead = head1;
+    head1 = head1.next;
+  } else {
+    resultHead = head2;
+    head2 = head2.next;
+  }
+  resultTail = resultHead;
+
+  for (;;) {
+    if (head1 === null || head2 === null) {
+      resultTail.next = head1 ?? head2;
+      return resultHead;
+    }
+
+    if (head1.val <= head2.val) {
+      resultTail.next = head1;
+      head1 = head1.next;
+    } else {
+      resultTail.next = head2;
+      head2 = head2.next;
+    }
+
+    resultTail = resultTail.next;
+  }
+}
+
+type OptionalNode = ListNode | null;
 
 // Provided
 export class ListNode {

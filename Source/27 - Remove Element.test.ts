@@ -1,4 +1,3 @@
-import { removeElement } from './27 - Remove Element';
 
 describe('removeElement', () => {
   test.each([
@@ -6,10 +5,9 @@ describe('removeElement', () => {
     [[0, 1, 2, 2, 3, 0, 4, 2], 2, [0, 1, 4, 0, 3]],
   ])('Should remove %p from %p into %p', (nums, val, expected) => {
     const result = removeElement(nums, val);
-    expect(
-      nums.slice(0, result).sort()
-    ).toEqual(
-      expected.sort()
-    );
+    const newArray = nums.slice(0, result);
+    newArray.sort();
+    expected.sort();
+    expect(newArray).toEqual(expected);
   });
 });

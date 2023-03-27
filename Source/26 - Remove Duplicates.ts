@@ -21,7 +21,7 @@
  * - `-100 \<= nums[i] \<= 100`
  * - `nums` is sorted in **non-decreasing** order.
  */
-export function removeDuplicates(nums: number[]): number {
+export function removeDuplicates_Zach(nums: number[]): number {
   let uniqueValues = 0;
   let currentValue = -Infinity;
 
@@ -35,4 +35,17 @@ export function removeDuplicates(nums: number[]): number {
   }
 
   return uniqueValues;
+}
+
+export function removeDuplicates_Grey(nums: number[]): number {
+  let value = nums[0];
+  let sortedSectionEnd = 1;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== value) {
+      value = nums[i];
+      nums[sortedSectionEnd] = value;
+      sortedSectionEnd += 1;
+    }
+  }
+  return sortedSectionEnd;
 }
