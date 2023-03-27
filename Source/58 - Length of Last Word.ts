@@ -11,6 +11,5 @@
  * - There will be at least one word in `s`.
  */
 export function lengthOfLastWord(s: string): number {
-  s;
-  return 0;
+  return s.trimEnd().split(' ').slice(-1)[0].length;
 }
