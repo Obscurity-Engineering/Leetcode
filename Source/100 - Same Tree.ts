@@ -11,36 +11,9 @@
  * - `-10^4 <= Node.val <= 10^4`
  */
 export function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
-  const treePTraversal: (number | null)[] = [];
-  const treeQTraversal: (number | null)[] = [];
-
-  if(p !== null) {
-    traverseSubTree(p, treePTraversal);
-  }
-
-  if(q !== null) {
-    traverseSubTree(q, treeQTraversal);
-  }
-
-  return JSON.stringify(treePTraversal) === JSON.stringify(treeQTraversal);
-
-}
-
-function traverseSubTree(node: TreeNode, traversal: (number | null)[]): void {
-  traversal.push(node.val);
-  
-  if(node.left !== null) {
-    traverseSubTree(node.left, traversal);
-  } else {
-    traversal.push(null);
-  }
-
-  if(node.right !== null) {
-    traverseSubTree(node.right, traversal);
-  } else {
-    traversal.push(null);
-  }
-
+  p;
+  q;
+  return false;
 }
 
 export class TreeNode {

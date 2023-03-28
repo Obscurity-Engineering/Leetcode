@@ -5,7 +5,6 @@ describe('isSameTree', () => {
     [[1, 2, 3], [1, 2, 3], true],
     [[1, 2], [1, null, 2], false],
     [[1, 2, 1], [1, 1, 2], false],
-    [[1,1], [1,null,1],  false]
   ])('%p == %p is %p', (p, q, isSame) => {
     const pTree = toTree(p);
     const qTree = toTree(q);
