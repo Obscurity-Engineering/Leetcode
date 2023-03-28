@@ -8,25 +8,8 @@
  * - `-100 <= Node.val <= 100`
  */
 export function inorderTraversal(root: TreeNode | null): number[] {
-
-  const traversal: number[] = [];
-
-  if(root !== null)
-    traverseSubTree(root, traversal);
-
-  return traversal;
-}
-
-function traverseSubTree(node: TreeNode, traversal: number[]): void {
-  if(node.left !== null)
-    traverseSubTree(node.left, traversal);
-  
-  if(node.val !== null)
-    traversal.push(node.val);
-
-  if(node.right !== null)
-    traverseSubTree(node.right, traversal);
-
+  root;
+  return [];
 }
 
 export class TreeNode {
