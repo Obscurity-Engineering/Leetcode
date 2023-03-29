@@ -1,4 +1,4 @@
-import { isPalindrome } from './9 - Palindrome Number';
+import { isPalindrome } from './009 - Palindrome Number';
 
 describe('isPalindrome', () => {
   test.each([

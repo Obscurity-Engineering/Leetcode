@@ -9,5 +9,6 @@
     "explorer.fileNesting.patterns": {
         "*.ts": "${capture}.test.ts",
         "package.json": "package-lock.json, yarn.lock, .eslintrc, .gitignore, babel.config.json, jest.config.json, tsconfig.json, LICENSE, README",
-    }
+    },
+    "cmake.configureOnOpen": false
 }

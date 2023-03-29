@@ -1,4 +1,4 @@
-import { twoSum } from './1 - Two Sum';
+import { twoSum } from './001 - Two Sum';
 
 describe('twoSum', () => {
   test.each([
