@@ -8,8 +8,31 @@
  * - `-100 <= Node.val <= 100`
  */
 export function isSymmetric(root: TreeNode | null): boolean {
-  root;
-  return false;
+  if(root === null) {
+    return true;
+  }
+
+  const deque: (TreeNode | null)[] = [root.left, root.right];
+  
+  while(deque.length !== 0) {
+    const leftNode = deque.shift();
+    const rightNode = deque.pop();
+    if(!leftNode && !rightNode)
+      continue;
+
+    if(!leftNode || !rightNode)
+      return false;
+
+    if(leftNode.val !== rightNode.val)
+      return false;
+
+    deque.unshift(leftNode.left);
+    deque.unshift(leftNode.right);
+    deque.push(rightNode.right);
+    deque.push(rightNode.left);
+  }
+
+  return true;
 }
 
 export class TreeNode {
