@@ -1,4 +1,4 @@
-import { climbStairs } from './70 - Climbing Stairs';
+import { climbStairs } from './070 - Climbing Stairs';
 
 describe('climbStairs', () => {
   test.each([

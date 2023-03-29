@@ -9,16 +9,18 @@
  * - `1 \<= s.length \<= 10^4`
  * - `s` consists of only English letters and spaces `' '`.
  * - There will be at least one word in `s`.
+ * Production code would use:
+ * ```ts
+ *  return s.trimEnd().split(' ').slice(-1)[0].length;
+ * ```
  */
-export function lengthOfLastWord(s: string): number {
-<<<<<< Zach-Problems-58-66-67-69-70
-  return s.trimEnd().split(' ').slice(-1)[0].length;
-======
-  /**
-   * In production
-   * return s.trimEnd().split(' ').slice(-1)[0].length;
-   */
+export type LengthOfLastWord = (s: string) => number;
 
+export function lengthOfLastWord_Zach(s: string): number {
+  return s.trimEnd().split(' ').slice(-1)[0].length;
+}
+
+export function lengthOfLastWord_Grey(s: string): number {
   let endIndex = s.length - 1;
   while (s[endIndex] === ' ')
     endIndex -= 1;
@@ -28,5 +30,4 @@ export function lengthOfLastWord(s: string): number {
     startIndex -= 1;
 
   return endIndex - startIndex;
->>>>>> Unified-Problems-58-66-67-69-70
 }

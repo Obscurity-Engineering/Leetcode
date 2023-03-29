@@ -1,4 +1,4 @@
-import { addBinary } from './67 - Add Binary';
+import { addBinary } from './067 - Add Binary';
 
 describe('addBinary', () => {
   test.each([

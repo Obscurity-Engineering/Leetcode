@@ -12,15 +12,15 @@
  * - `0 \<= digits[i] \<= 9`
  * - `digits` does not contain any leading `0`'s.
  */
+export type PlusOne = (digits: number[]) => number[];
 
-// I forgot BigInt! Started failing the later test cases until I added it in
-// Jest test file broken?
-export function plusOne(digits: number[]): number[] {
-<<<<<< Zach-Problems-58-66-67-69-70
+export function plusOne_Zach(digits: number[]): number[] {
   const incremented = BigInt(digits.join('')) + BigInt(1);
-  const finalIntegerArray = Array.from(String(incremented), Number); // Had to use .from instead of String split due to TS limiting return type
+  const finalIntegerArray = Array.from(String(incremented), Number);
   return finalIntegerArray;
-======
+}
+
+export function plusOne_Grey(digits: number[]): number[] {
   for (let i = digits.length - 1; i >= 0; i--) {
     if (digits[i] !== 9) {
       digits[i] += 1;
@@ -32,5 +32,4 @@ export function plusOne(digits: number[]): number[] {
   
   digits.splice(0, 1, 1, 0);
   return digits;
->>>>>> Unified-Problems-58-66-67-69-70
 }

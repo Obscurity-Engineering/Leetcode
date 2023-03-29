@@ -1,4 +1,4 @@
-import { mySqrt } from './69 - Sqrt(x)';
+import { mySqrt } from './069 - Sqrt(x)';
 
 describe('mySqrt', () => {
   test.each([
