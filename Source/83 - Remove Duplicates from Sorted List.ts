@@ -8,29 +8,48 @@
  * - `-100 <= Node.val <= 100`
  * - The list is guaranteed to be **sorted** in ascending order.
  */
-export function deleteDuplicates(head: ListNode | null): ListNode | null {
+export function deleteDuplicates_Zach(head: ListNode | null): ListNode | null {
 
   if (head === null) {
     return null;
   }
 
   const returnHead: ListNode = new ListNode(head.val, null);
-  let returnPointer = returnHead; 
-  let currentValue = returnHead.val; 
+  let currentNode: ListNode | null = head;
+  let returnListPointer = returnHead; 
+  let currentUniqueValue = returnHead.val; 
 
-  while(head !== null) {
-    if(head.val !== currentValue) {
-      currentValue = head.val;
-      const newNode = new ListNode(head.val, null);
-      returnPointer.next = newNode;
-      returnPointer = newNode;
+  while(currentNode !== null) {
+    if(currentNode.val !== currentUniqueValue) {
+      currentUniqueValue = currentNode.val;
+      const newNode = new ListNode(currentNode.val, null);
+      returnListPointer.next = newNode;
+      returnListPointer = newNode;
     }
 
-    head = head.next;
+    currentNode = currentNode.next;
   }
 
   return returnHead;
+}
 
+export function deleteDuplicates_Grey(head: ListNode | null): ListNode | null {
+  if (head === null)
+    return null;
+
+  let currentNode: ListNode | null = head;
+  let uniqueValueNode = head;
+  while (currentNode !== null) {
+    if (currentNode.val !== uniqueValueNode.val) {
+      uniqueValueNode.next = currentNode;
+      uniqueValueNode = currentNode;
+    }
+    
+    currentNode = currentNode.next;
+  }
+
+  uniqueValueNode.next = null;
+  return head;
 }
 
 // Provided

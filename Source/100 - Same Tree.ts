@@ -10,7 +10,7 @@
  * - The number of nodes in both trees is in the range `[0, 100]`.
  * - `-10^4 <= Node.val <= 10^4`
  */
-export function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
+export function isSameTree_Zach(p: TreeNode | null, q: TreeNode | null): boolean {
   const treePTraversal: (number | null)[] = [];
   const treeQTraversal: (number | null)[] = [];
 
@@ -40,7 +40,15 @@ function traverseSubTree(node: TreeNode, traversal: (number | null)[]): void {
   } else {
     traversal.push(null);
   }
+}
 
+export function isSameTree_Grey(p: TreeNode | null, q: TreeNode | null): boolean {  
+  if (p === null || q === null)
+    return p === q;
+  
+  return p.val === q.val &&
+    isSameTree_Grey(p.left, q.left) &&
+    isSameTree_Grey(p.right, q.right);
 }
 
 export class TreeNode {

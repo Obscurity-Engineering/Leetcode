@@ -7,8 +7,7 @@
  * - The number of nodes in the tree is in the range `[0, 100]`.
  * - `-100 <= Node.val <= 100`
  */
-export function inorderTraversal(root: TreeNode | null): number[] {
-
+export function inorderTraversal_Zach(root: TreeNode | null): number[] {
   const traversal: number[] = [];
 
   if(root !== null)
@@ -26,7 +25,17 @@ function traverseSubTree(node: TreeNode, traversal: number[]): void {
 
   if(node.right !== null)
     traverseSubTree(node.right, traversal);
+}
 
+export function inorderTraversal_Grey(root: TreeNode | null): number[] {
+  if (root === null)
+    return [];
+
+  return [
+    inorderTraversal_Grey(root.left),
+    root.val,
+    inorderTraversal_Grey(root.right)
+  ].flat();
 }
 
 export class TreeNode {

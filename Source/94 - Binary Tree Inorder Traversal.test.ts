@@ -7,11 +7,10 @@ describe('inorderTraversal', () => {
     [[1], [1]],
   ])('Should traverse %p as %p', (root, expected) => {
     const tree = toTree(root);
-    const expectedTree = toTree(expected);
 
     const result = inorderTraversal(tree);
     
-    expect(result).toEqual(expectedTree);
+    expect(result).toEqual(expected);
   });
 });
 

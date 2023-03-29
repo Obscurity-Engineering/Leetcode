@@ -20,28 +20,38 @@
  * - `1 <= m + n <= 200`
  * - `-10^9 <= nums1[i], nums2[j] <= 10^9`
  */
-export function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-  
+export function merge_Zach(nums1: number[], m: number, nums2: number[], n: number): void {
   
   let sortedIndex = nums1.length - 1;
-  m--;
-  n--;
 
   while(m > 0 || n > 0) {
-    if(nums1[m] < nums2[n]) {
-      nums1[sortedIndex] = nums2[n];
+    if(n === 0 || nums1[m - 1] < nums2[n - 1]) {
+      nums1[sortedIndex] = nums2[n - 1];
       n--;
     } else {
-      nums1[sortedIndex] = nums1[m];
+      nums1[sortedIndex] = nums1[m - 1];
       m--;
     }
 
     sortedIndex--;
   }
+}
 
-  while(n > 0) {
-    nums1[sortedIndex] = nums2[n];
-    sortedIndex--;
+export function merge_Grey(nums1: number[], m: number, nums2: number[], n: number): void {
+  let unsortedCount1 = m;
+  let unsortedCount2 = n;
+
+  while (unsortedCount1 + unsortedCount2 > 0) {
+    const insertIndex = unsortedCount1 + unsortedCount2 - 1; 
+    const value1 = nums1[unsortedCount1 - 1];
+    const value2 = nums2[unsortedCount2 - 1];
+
+    if (unsortedCount2 === 0 || value1 >= value2) {
+      nums1[insertIndex] = value1;
+      unsortedCount1 -= 1;
+    } else {
+      nums1[insertIndex] = value2;
+      unsortedCount2 -= 1;
+    }
   }
-
 }
