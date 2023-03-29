@@ -9,8 +9,22 @@
  * - The list is guaranteed to be **sorted** in ascending order.
  */
 export function deleteDuplicates(head: ListNode | null): ListNode | null {
-  head;
-  return null;
+  if (head === null)
+    return null;
+
+  let currentNode: ListNode | null = head;
+  let uniqueValueNode = head;
+  while (currentNode !== null) {
+    if (currentNode.val !== uniqueValueNode.val) {
+      uniqueValueNode.next = currentNode;
+      uniqueValueNode = currentNode;
+    }
+    
+    currentNode = currentNode.next;
+  }
+
+  uniqueValueNode.next = null;
+  return head;
 }
 
 // Provided

@@ -8,9 +8,21 @@
  * - `-100 <= Node.val <= 100`
  */
 export function isSymmetric(root: TreeNode | null): boolean {
-  root;
-  return false;
+  if (root === null)
+    return true;
+  
+  return isSymmetricInner(root?.left, root?.right);
 }
+
+function isSymmetricInner(p: TreeNode | null, q: TreeNode | null): boolean {
+  if (p === null || q === null)
+    return p === q;
+  
+  return p.val === q.val &&
+    isSymmetricInner(p.left, q.right) &&
+    isSymmetricInner(p.right, q.left);
+}
+
 
 export class TreeNode {
   val: number;
