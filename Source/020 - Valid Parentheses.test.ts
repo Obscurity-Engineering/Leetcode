@@ -1,4 +1,4 @@
-import { isValid } from './20 - Valid Parentheses';
+import { isValid } from './020 - Valid Parentheses';
 
 describe('isValid', () => {
   test.each([

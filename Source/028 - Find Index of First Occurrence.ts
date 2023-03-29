@@ -8,9 +8,19 @@
  * Constraints:
  * - `1 \<= haystack.length, needle.length \<= 10^4`
  * - `haystack` and `needle` consist of only lowercase English characters.
+ * @remarks
+ * Production code would use:
+ * ```ts
+ * haystack.indexOf(needle)
+ * ```
  */
+
 export function strStr(haystack: string, needle: string): number {
-  haystack;
-  needle;
+  const needleLength = needle.length;
+  for (let i = 0; i <= haystack.length - needleLength; i++) {
+    if (haystack.slice(i, i + needleLength) === needle)
+      return i;
+  }
+
   return -1;
 }
