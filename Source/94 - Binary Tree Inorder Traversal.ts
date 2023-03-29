@@ -8,8 +8,14 @@
  * - `-100 <= Node.val <= 100`
  */
 export function inorderTraversal(root: TreeNode | null): number[] {
-  root;
-  return [];
+  if (root === null)
+    return [];
+
+  return [
+    inorderTraversal(root.left),
+    root.val,
+    inorderTraversal(root.right)
+  ].flat();
 }
 
 export class TreeNode {

@@ -21,8 +21,20 @@
  * - `-10^9 <= nums1[i], nums2[j] <= 10^9`
  */
 export function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-  nums1;
-  m;
-  nums2;
-  n;
+  let unsortedCount1 = m;
+  let unsortedCount2 = n;
+
+  while (unsortedCount1 + unsortedCount2 > 0) {
+    const insertIndex = unsortedCount1 + unsortedCount2 - 1; 
+    const value1 = nums1[unsortedCount1 - 1];
+    const value2 = nums2[unsortedCount2 - 1];
+
+    if (unsortedCount2 === 0 || value1 >= value2) {
+      nums1[insertIndex] = value1;
+      unsortedCount1 -= 1;
+    } else {
+      nums1[insertIndex] = value2;
+      unsortedCount2 -= 1;
+    }
+  }
 }
