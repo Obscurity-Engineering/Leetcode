@@ -1,3 +1,5 @@
+import { ListNode, OptionalNode } from './common/LinkedList';
+
 /**
  * {@link https://leetcode.com/problems/remove-duplicates-from-sorted-list/ | Remove Duplicates}
  * Given the `head` of a sorted linked list, *delete all duplicates such that 
@@ -8,6 +10,8 @@
  * - `-100 <= Node.val <= 100`
  * - The list is guaranteed to be **sorted** in ascending order.
  */
+export type DeleteDuplicates = (head: OptionalNode) => OptionalNode;
+
 export function deleteDuplicates_Zach(head: ListNode | null): ListNode | null {
 
   if (head === null) {
@@ -33,11 +37,11 @@ export function deleteDuplicates_Zach(head: ListNode | null): ListNode | null {
   return returnHead;
 }
 
-export function deleteDuplicates_Grey(head: ListNode | null): ListNode | null {
+export function deleteDuplicates_Grey(head: OptionalNode): OptionalNode {
   if (head === null)
     return null;
 
-  let currentNode: ListNode | null = head;
+  let currentNode: OptionalNode = head;
   let uniqueValueNode = head;
   while (currentNode !== null) {
     if (currentNode.val !== uniqueValueNode.val) {
@@ -51,14 +55,3 @@ export function deleteDuplicates_Grey(head: ListNode | null): ListNode | null {
   uniqueValueNode.next = null;
   return head;
 }
-
-// Provided
-export class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = (val===undefined ? 0 : val);
-    this.next = (next===undefined ? null : next);
-  }
-}
-// END Provided

@@ -1,3 +1,5 @@
+import { OptionalTreeNode, TreeNode } from './common/BinaryTree';
+
 /**
  * {@link https://leetcode.com/problems/binary-tree-inorder-traversal/ | InOrder Traversal}
  * Given the `root` of a binary tree, return *the inorder traversal of its 
@@ -7,6 +9,8 @@
  * - The number of nodes in the tree is in the range `[0, 100]`.
  * - `-100 <= Node.val <= 100`
  */
+export type InorderTraversal = (root: OptionalTreeNode) => number[]
+
 export function inorderTraversal_Zach(root: TreeNode | null): number[] {
   const traversal: number[] = [];
 
@@ -27,7 +31,7 @@ function traverseSubTree(node: TreeNode, traversal: number[]): void {
     traverseSubTree(node.right, traversal);
 }
 
-export function inorderTraversal_Grey(root: TreeNode | null): number[] {
+export function inorderTraversal_Grey(root: OptionalTreeNode): number[] {
   if (root === null)
     return [];
 
@@ -36,15 +40,4 @@ export function inorderTraversal_Grey(root: TreeNode | null): number[] {
     root.val,
     inorderTraversal_Grey(root.right)
   ].flat();
-}
-
-export class TreeNode {
-  val: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
-  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-    this.val = (val===undefined ? 0 : val);
-    this.left = (left===undefined ? null : left);
-    this.right = (right===undefined ? null : right);
-  }
 }

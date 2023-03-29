@@ -1,45 +1,25 @@
-import { isSameTree, TreeNode } from './100 - Same Tree';
+import { IsSameTree, isSameTree_Grey, isSameTree_Zach } from './100 - Same Tree';
+import { toBinaryTree } from './common/BinaryTree';
+import { testSolutions } from './common/Test';
 
-describe('isSameTree', () => {
-  test.each([
+testSolutions({
+  cases: [
     [[1, 2, 3], [1, 2, 3], true],
     [[1, 2], [1, null, 2], false],
     [[1, 2, 1], [1, 1, 2], false],
-  ])('%p == %p is %p', (p, q, isSame) => {
-    const pTree = toTree(p);
-    const qTree = toTree(q);
+  ],
+  descriptor: '%p == %p is %p',
+  solutions: [
+    ['Grey\'s isSameTree', isSameTree_Grey],
+    ['Zach\'s isSameTree', isSameTree_Zach]
+  ],
+  tester: (isSameTree: IsSameTree) => 
+    (p: (number | null)[], q: (number | null)[], expected: boolean) => {
+      const pTree = toBinaryTree(p);
+      const qTree = toBinaryTree(q);
 
-    const result = isSameTree(pTree, qTree);
+      const result = isSameTree(pTree, qTree);
 
-    expect(result).toBe(isSame);
-  });
-});
-
-function toTree(numbers: (number | null)[]): TreeNode | null {
-  const first = numbers[0];
-  if (first === undefined || first === null) {
-    return null;
-  }
-
-  const root = new TreeNode(first);
-  const queue: TreeNode[] = [root];
-  let index = 1;
-  while (index < numbers.length) {
-    const current = queue.shift();
-    if (current) {
-      const leftNodeValue = numbers[index];
-      if (leftNodeValue !== null) {
-        current.left = new TreeNode(leftNodeValue);
-        queue.push(current.left);
-      }
-      index++;
-      const rightNodeValue = numbers[index];
-      if (rightNodeValue !== null) {
-        current.right = new TreeNode(rightNodeValue);
-        queue.push(current.right);
-      }
-      index++;
+      expect(result).toBe(expected);
     }
-  }
-  return root;
-}
+});

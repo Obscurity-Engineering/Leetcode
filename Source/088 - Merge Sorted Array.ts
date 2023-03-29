@@ -20,12 +20,23 @@
  * - `1 <= m + n <= 200`
  * - `-10^9 <= nums1[i], nums2[j] <= 10^9`
  */
-export function merge_Zach(nums1: number[], m: number, nums2: number[], n: number): void {
-  
+export type Merge = (
+  nums1: number[], 
+  m: number, 
+  nums2: number[], 
+  n: number
+) => void;
+
+export function merge_Zach(
+  nums1: number[], 
+  m: number, 
+  nums2: number[], 
+  n: number
+): void {
   let sortedIndex = nums1.length - 1;
 
   while(m > 0 || n > 0) {
-    if(n === 0 || nums1[m - 1] < nums2[n - 1]) {
+    if(m === 0 || nums1[m - 1] < nums2[n - 1]) {
       nums1[sortedIndex] = nums2[n - 1];
       n--;
     } else {
