@@ -12,6 +12,19 @@
  * - `0 <= x <= 2^31 - 1`
  */
 export function mySqrt(x: number): number {
-  x;
-  return 0;
+  if (x < 2)
+    return x;
+    
+  let guess = x / 2;
+  let inverse = x / guess;
+  while (guess - inverse > 1) {
+    guess = (guess + inverse) / 2;
+    inverse = x / guess;
+  }
+
+  guess = Math.floor(guess);
+  if (guess * guess > x)
+    return guess - 1;
+  else
+    return guess;
 }

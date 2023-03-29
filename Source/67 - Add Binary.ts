@@ -9,7 +9,26 @@
  */
 
 export function addBinary(a: string, b: string): string {
-  a;
-  b;
-  return '';
+  const largerLength = Math.max(a.length, b.length);
+  a = a.padStart(largerLength, '0');
+  b = b.padStart(largerLength, '0');
+
+  let carry = 0;
+  const accumulator = [];
+  for (let i = a.length - 1; i >= 0; i--) {
+    let sum = carry;
+    if (a[i] === '1')
+      sum += 1;
+    
+    if (b[i] === '1')
+      sum += 1;
+    
+    accumulator.push(sum % 2);
+    carry = Math.floor(sum / 2);
+  }
+
+  if (carry === 1)
+    accumulator.push(1);
+
+  return accumulator.reverse().join('');
 }

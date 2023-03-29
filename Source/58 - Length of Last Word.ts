@@ -11,5 +11,22 @@
  * - There will be at least one word in `s`.
  */
 export function lengthOfLastWord(s: string): number {
+<<<<<< Zach-Problems-58-66-67-69-70
   return s.trimEnd().split(' ').slice(-1)[0].length;
+======
+  /**
+   * In production
+   * return s.trimEnd().split(' ').slice(-1)[0].length;
+   */
+
+  let endIndex = s.length - 1;
+  while (s[endIndex] === ' ')
+    endIndex -= 1;
+
+  let startIndex = endIndex;
+  while(s[startIndex] !== ' ' && startIndex >= 0)
+    startIndex -= 1;
+
+  return endIndex - startIndex;
+>>>>>> Unified-Problems-58-66-67-69-70
 }
