@@ -21,6 +21,8 @@
  * - `-100 \<= nums[i] \<= 100`
  * - `nums` is sorted in **non-decreasing** order.
  */
+export type RemoveDuplicates = (nums: number[]) => number;
+
 export function removeDuplicates_Zach(nums: number[]): number {
   let uniqueValues = 0;
   let currentValue = -Infinity;

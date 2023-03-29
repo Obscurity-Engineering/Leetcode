@@ -8,15 +8,14 @@
  * Constraints:
  * - `1 \<= haystack.length, needle.length \<= 10^4`
  * - `haystack` and `needle` consist of only lowercase English characters.
+ * @remarks
+ * Production code would use:
+ * ```ts
+ * haystack.indexOf(needle)
+ * ```
  */
 
-// Inspired by Leetcode solutions, made me facepalm when I saw it
 export function strStr(haystack: string, needle: string): number {
-  /**
-   * In production code:
-   * return haystack.indexOf(needle);
-   */
-
   const needleLength = needle.length;
   for (let i = 0; i <= haystack.length - needleLength; i++) {
     if (haystack.slice(i, i + needleLength) === needle)

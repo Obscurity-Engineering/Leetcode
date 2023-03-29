@@ -21,6 +21,8 @@
  * - `0 \<= nums[i] \<= 50`
  * - `0 \<= val \<= 100`
  */
+export type RemoveElement = (nums: number[], val: number) => number;
+
 export function removeElement_Zach(nums: number[], val: number): number {
   let keepers = 0;
 

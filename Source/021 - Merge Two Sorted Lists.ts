@@ -1,9 +1,12 @@
+import { ListNode, OptionalNode } from './common/LinkedList';
+
 /**
  * {@link https://leetcode.com/problems/merge-two-sorted-lists/ | Merge Two Sorted Lists}
  * 
  * You are given the heads of two sorted linked lists `list1` and `list2`.
  * 
- * Merge the two lists in a one **sorted** list. The list should be made by splicing together the nodes of the first two lists.
+ * Merge the two lists in a one **sorted** list. The list should be made by 
+ * splicing together the nodes of the first two lists.
  * 
  * Return *the head of the merged linked list.*
  * 
@@ -12,7 +15,13 @@
  * - `-100 \<= Node.val \<= 100`
  * - Both `list1` and `list2` are sorted in *non-decreasing* order.
 */
-export function mergeTwoLists_Zach(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+export type MergeTwoLists = 
+  (list1: OptionalNode, list2: OptionalNode) => OptionalNode
+
+export function mergeTwoLists_Zach(
+  list1: OptionalNode, 
+  list2: OptionalNode
+): OptionalNode {
   const headNode = new ListNode();
   let sortedListPointer = headNode;
 
@@ -42,7 +51,10 @@ export function mergeTwoLists_Zach(list1: ListNode | null, list2: ListNode | nul
   return headNode.next;
 }
 
-export function mergeTwoLists_Grey(list1: OptionalNode, list2: OptionalNode): OptionalNode {
+export function mergeTwoLists_Grey(
+  list1: OptionalNode, 
+  list2: OptionalNode
+): OptionalNode {
   if (list1 === null || list2 === null)
     return list1 ?? list2;
 
@@ -79,16 +91,3 @@ export function mergeTwoLists_Grey(list1: OptionalNode, list2: OptionalNode): Op
     resultTail = resultTail.next;
   }
 }
-
-type OptionalNode = ListNode | null;
-
-// Provided
-export class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = (val===undefined ? 0 : val);
-    this.next = (next===undefined ? null : next);
-  }
-}
-// END Provided

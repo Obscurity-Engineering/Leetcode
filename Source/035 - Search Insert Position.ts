@@ -13,6 +13,8 @@
  * - `nums` contains **distinct** values sorted in **ascending** order.
  * - `-10^4 \<= target \<= 10^4`
  */
+export type SearchInsert = (nums: number[], target: number) => number;
+
 export function searchInsert_Zach(nums: number[], target: number): number {
   let left = 0;
   let right = nums.length - 1;
