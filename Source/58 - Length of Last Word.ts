@@ -11,6 +11,9 @@
  * - There will be at least one word in `s`.
  */
 export function lengthOfLastWord(s: string): number {
+<<<<<< Zach-Problems-58-66-67-69-70
+  return s.trimEnd().split(' ').slice(-1)[0].length;
+======
   /**
    * In production
    * return s.trimEnd().split(' ').slice(-1)[0].length;
@@ -25,4 +28,5 @@ export function lengthOfLastWord(s: string): number {
     startIndex -= 1;
 
   return endIndex - startIndex;
+>>>>>> Unified-Problems-58-66-67-69-70
 }
