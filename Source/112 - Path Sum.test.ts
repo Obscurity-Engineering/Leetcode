@@ -4,6 +4,7 @@ import { testSolutions } from './common/Test';
 
 testSolutions({
   cases: [
+    [[5,4,8,11,null,13,4,7,2,null,null,null,1], 22, true],
     [[1,2,3], 5, false],
     [[], 0, false],
   ],
@@ -15,6 +16,7 @@ testSolutions({
   tester: (hasPathSum: HasPathSum) =>
     (root: (number | null)[], sum: number, expected: boolean) => {
       const tree = toBinaryTree(root);
+      console.log(JSON.stringify(tree, null, 2));
       expect(hasPathSum(tree, sum)).toBe(expected);
     }
 });

@@ -17,6 +17,11 @@ export function maxDepth_Zach(root: OptionalTreeNode): number {
 }
 
 export function maxDepth_Grey(root: OptionalTreeNode): number {
-  root;
-  return 0;
+  if (root === null)
+    return 0;
+
+  return 1 + Math.max(
+    maxDepth_Grey(root.left),
+    maxDepth_Grey(root.right)
+  );
 }

@@ -4,7 +4,9 @@ import { OptionalTreeNode } from './common/BinaryTree';
  * {@link https://leetcode.com/problems/minimum-depth-of-binary-tree/ | Minimum Depth of Binary Tree}
  * 
  * Given a binary tree, find its minimum depth.
- * The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+ * The minimum depth is the number of nodes along the shortest path from the 
+ * root node down to the nearest leaf node.
+ * 
  * Note: A leaf is a node with no children.
  * 
  * Constraints:
@@ -19,6 +21,18 @@ export function minDepth_Zach(root: OptionalTreeNode): number {
 }
 
 export function minDepth_Grey(root: OptionalTreeNode): number {
-  root;
-  return 0;
+  function minDepth(root: OptionalTreeNode): number {
+    if (root === null)
+      return 0;
+
+    const { left, right } = root;
+    if (left === null && right === null)
+      return 1;
+
+    return Math.min(
+      left === null ? Infinity : minDepth(left),
+      right === null ? Infinity : minDepth(right)
+    ) + 1;
+  }
+  return minDepth(root);
 }

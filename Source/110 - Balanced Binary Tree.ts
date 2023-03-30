@@ -19,6 +19,17 @@ export function isBalanced_Zach(root: OptionalTreeNode): boolean {
 }
 
 export function isBalanced_Grey(root: OptionalTreeNode): boolean {
-  root;
-  return false;
+  function isBalanced(root: OptionalTreeNode): [boolean, number] {
+    if (root === null)
+      return [true, 0];
+  
+    const [leftIsBalanced, leftHeight] = isBalanced(root.left);
+    const [rightIsBalanced, rightHeight] = isBalanced(root.right);
+  
+    return [
+      leftIsBalanced && rightIsBalanced && Math.abs(leftHeight - rightHeight) <= 1,
+      Math.max(leftHeight, rightHeight) + 1
+    ];
+  }
+  return isBalanced(root)[0];
 }
