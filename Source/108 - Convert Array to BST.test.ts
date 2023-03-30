@@ -1,42 +1,28 @@
-import { sortedArrayToBST, TreeNode } from './108 - Convert Array to BST';
+import { SortedArrayToBST, sortedArrayToBST_Grey, sortedArrayToBST_Zach } from './108 - Convert Array to BST';
+import { isBalanced, isBinarySearchTree, traverseInOrder } from './common/BinaryTree';
+import { testSolutions } from './common/Test';
 
-describe('sortedArrayToBST', () => {
-  test.each([
-    [[-10, -3, 0, 5, 9], [0, -3, 9, -10, null, 5]],
-    [[1, 3], [3, 1]],
-  ])('%p should yield BST == %p', (sortedArray, expected) => {
+testSolutions({
+  cases: [
+    [[-10, -3, 0, 5, 9]],
+    [[1, 3]],
+  ],
+  descriptor: '%p should yield BST == %p',
+  solutions: [
+    ['Zach\'s sortedArrayToBST', sortedArrayToBST_Zach],
+    ['Grey\'s sortedArrayToBST', sortedArrayToBST_Grey],
+  ],
+  tester: (sortedArrayToBST: SortedArrayToBST) =>
+    (sortedArray: number[]) => {
+      const bst = sortedArrayToBST(sortedArray);
 
-    const expectedTree = toTree(expected);
-    
-    expect(sortedArrayToBST(sortedArray)).toEqual(expectedTree);
-  });
-});
+      const isBst = isBinarySearchTree(bst);
+      expect(isBst).toBeTruthy();
 
-function toTree(numbers: (number | null)[]): TreeNode | null {
-  const first = numbers[0];
-  if (first === undefined || first === null) {
-    return null;
-  }
+      const isBalancedTree = isBalanced(bst);
+      expect(isBalancedTree).toBeTruthy();
 
-  const root = new TreeNode(first);
-  const queue: TreeNode[] = [root];
-  let index = 1;
-  while (index < numbers.length) {
-    const current = queue.shift();
-    if (current) {
-      const leftNodeValue = numbers[index];
-      if (leftNodeValue !== null) {
-        current.left = new TreeNode(leftNodeValue);
-        queue.push(current.left);
-      }
-      index++;
-      const rightNodeValue = numbers[index];
-      if (rightNodeValue !== null) {
-        current.right = new TreeNode(rightNodeValue);
-        queue.push(current.right);
-      }
-      index++;
+      const backToSortedArray = traverseInOrder(bst);
+      expect(backToSortedArray).toEqual(sortedArray);
     }
-  }
-  return root;
-}
+});

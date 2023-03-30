@@ -1,41 +1,22 @@
-import { hasPathSum, TreeNode } from './112 - Path Sum';
+import { HasPathSum, hasPathSum_Grey, hasPathSum_Zach } from './112 - Path Sum';
+import { toBinaryTree } from './common/BinaryTree';
+import { testSolutions } from './common/Test';
 
-describe('hasPathSum', () => {
-  test.each([
+testSolutions({
+  cases: [
+    [[5,4,8,11,null,13,4,7,2,null,null,null,1], 22, true],
     [[1,2,3], 5, false],
     [[], 0, false],
-  ])('%p has path sum for %p === %p', (root, targetSum, result) => {
-    const tree = toTree(root);
-
-    expect(hasPathSum(tree, targetSum)).toEqual(result);
-  });
-});
-
-function toTree(numbers: (number | null)[]): TreeNode | null {
-  const first = numbers[0];
-  if (first === undefined || first === null) {
-    return null;
-  }
-
-  const root = new TreeNode(first);
-  const queue: TreeNode[] = [root];
-  let index = 1;
-  while (index < numbers.length) {
-    const current = queue.shift();
-    if (current) {
-      const leftNodeValue = numbers[index];
-      if (leftNodeValue !== null) {
-        current.left = new TreeNode(leftNodeValue);
-        queue.push(current.left);
-      }
-      index++;
-      const rightNodeValue = numbers[index];
-      if (rightNodeValue !== null) {
-        current.right = new TreeNode(rightNodeValue);
-        queue.push(current.right);
-      }
-      index++;
+  ],
+  descriptor: '%p has path sum for %p === %p',
+  solutions: [
+    ['Zach\'s hasPathSum', hasPathSum_Zach],
+    ['Grey\'s hasPathSum', hasPathSum_Grey],
+  ],
+  tester: (hasPathSum: HasPathSum) =>
+    (root: (number | null)[], sum: number, expected: boolean) => {
+      const tree = toBinaryTree(root);
+      console.log(JSON.stringify(tree, null, 2));
+      expect(hasPathSum(tree, sum)).toBe(expected);
     }
-  }
-  return root;
-}
+});

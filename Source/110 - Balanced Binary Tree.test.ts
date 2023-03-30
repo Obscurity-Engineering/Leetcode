@@ -1,41 +1,20 @@
-import { isBalanced, TreeNode } from './110 - Balanced Binary Tree';
+import { IsBalanced, isBalanced_Grey, isBalanced_Zach } from './110 - Balanced Binary Tree';
+import { toBinaryTree } from './common/BinaryTree';
+import { testSolutions } from './common/Test';
 
-describe('isBalanced', () => {
-  test.each([
+testSolutions({
+  cases: [
+    [[3, 9, 20, null, null, 15, 7], true],
     [[1, 2, 2, 3, 3, null, null, 4, 4], false],
-    [[], true],
-  ])('%p is balanced === %p', (root, result) => {
-    const tree = toTree(root);
-
-    expect(isBalanced(tree)).toEqual(result);
-  });
-});
-
-function toTree(numbers: (number | null)[]): TreeNode | null {
-  const first = numbers[0];
-  if (first === undefined || first === null) {
-    return null;
-  }
-
-  const root = new TreeNode(first);
-  const queue: TreeNode[] = [root];
-  let index = 1;
-  while (index < numbers.length) {
-    const current = queue.shift();
-    if (current) {
-      const leftNodeValue = numbers[index];
-      if (leftNodeValue !== null) {
-        current.left = new TreeNode(leftNodeValue);
-        queue.push(current.left);
-      }
-      index++;
-      const rightNodeValue = numbers[index];
-      if (rightNodeValue !== null) {
-        current.right = new TreeNode(rightNodeValue);
-        queue.push(current.right);
-      }
-      index++;
+  ],
+  descriptor: 'The tree %p is balanced: %p',
+  solutions: [
+    ['Zach\'s isBalanced', isBalanced_Zach],
+    ['Grey\'s isBalanced', isBalanced_Grey],
+  ],
+  tester: (isBalanced: IsBalanced) =>
+    (root: (number | null)[], balanced: boolean) => {
+      const tree = toBinaryTree(root);
+      expect(isBalanced(tree)).toBe(balanced);
     }
-  }
-  return root;
-}
+});
