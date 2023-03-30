@@ -11,9 +11,42 @@
  */
 
 export function minDepth(root: TreeNode | null): number {
-  root;
-  return -1;
+  if (root === null)
+    return 0;
+
+  // Make an object to attach a node to its depth
+  const queueElement = {
+    node: root,
+    depth: 1
+  };
+
+  // Use a queue for level order traversal (BFS)
+  const queue = [queueElement];
+
+  while (queue.length > 0) {
+    const currentQueueItem = queue.shift() ?? {node: new TreeNode(0, null, null), depth: 0}; // Added the ?? to make TS happy about 'undefined', never actually is used
+    const currentNode = currentQueueItem.node;
+    const depth = currentQueueItem.depth;
+    const left = currentNode.left;
+    const right = currentNode.right;
+
+    // Return the depth of the current node pulled from the queue if it is a leaf node (happens on the first leaf)
+    if (left === null && right === null)
+      return depth;
+
+    if (left !== null) {
+      queue.push({node: left, depth: depth + 1});
+    }
+      
+    if (right !== null)
+      queue.push({node: right, depth: depth + 1});
+
+  }
+
+  return 0;
 }
+
+
 
 
 // PROVIDED

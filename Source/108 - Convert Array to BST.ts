@@ -9,10 +9,29 @@
  * - nums is sorted in a strictly increasing order.
  */
 
-
+// Not my solution, referenced from online
 export function sortedArrayToBST(nums: number[]): TreeNode | null {
-  nums;
-  return null;
+  if (nums.length === 0)
+    return null;
+
+  return buildBST(nums, 0, nums.length - 1);
+}
+
+function buildBST(nums: number[], start: number, end: number): TreeNode | null {
+ 
+  // Base case, we have processed every number in our left or right subtree
+  if(start > end)
+    return null;
+  
+  const middleIndex = Math.floor((start + end) / 2);
+  const root = new TreeNode(nums[middleIndex]);
+
+  root.left = buildBST(nums, start, middleIndex - 1);
+
+  root.right = buildBST(nums, middleIndex + 1, end);
+
+
+  return root;
 }
 
 // PROVIDED

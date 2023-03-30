@@ -2,6 +2,7 @@ import { isBalanced, TreeNode } from './110 - Balanced Binary Tree';
 
 describe('isBalanced', () => {
   test.each([
+    [[3,9,20,null,null,15,7], true],
     [[1, 2, 2, 3, 3, null, null, 4, 4], false],
     [[], true],
   ])('%p is balanced === %p', (root, result) => {

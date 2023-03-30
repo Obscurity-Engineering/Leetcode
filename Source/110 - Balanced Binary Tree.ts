@@ -11,8 +11,22 @@
  */
 
 export function isBalanced(root: TreeNode | null): boolean {
-  root;
-  return false;
+  if(root === null)
+    return true;
+
+  const leftHeight = maxDepth(root.left);
+  const rightHeight = maxDepth(root.right);
+
+   
+
+  return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right); // Need to perform this operation recursively on all nodes in the tree
+}
+
+export function maxDepth(root: TreeNode | null): number {
+  if (root === null)
+    return 0;
+
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
 }
 
 // PROVIDED

@@ -10,11 +10,14 @@
  * - -1000 \<= targetSum \<= 1000
  */
 
-
+// Not my own solution, attempted, failed, and found solution online
 export function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
-  root;
-  targetSum;
-  return false;
+  if (root === null) 
+    return false;
+  if(root.left === null && root.right === null) 
+    return root.val === targetSum;
+
+  return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
 }
 
 // PROVIDED
