@@ -21,6 +21,39 @@ export function isPalindrome_Zach(s: string): boolean {
 }
 
 export function isPalindrome_Grey(s: string): boolean {
-  s;
-  return false;
+  const [A, a, _0] = [0b1000001, 0b1100001, 0b0011000];
+  function at(index: number) {
+    const characterCode = s.charCodeAt(index);
+    if (characterCode >= A && characterCode < A + 26) {
+      return characterCode - 32;
+    } else {
+      return characterCode;
+    }
+  }
+
+  const isAlphanumeric = (index: number) =>
+    (at(index) >= a && at(index) < a + 26) ||
+    (at(index) >= _0 && at(index) < _0 + 10);
+  
+  const isNotAlphanumericAt = (index: number) => 
+    !isAlphanumeric(at(index));
+
+  const window = {
+    left: 0,
+    right: s.length - 1
+  };
+
+  while (window.left < window.right) {
+    
+    while(isNotAlphanumericAt(window.left)) window.left++;
+    while(isNotAlphanumericAt(window.right)) window.right--;
+    if (at(window.left) !== at(window.right)) {
+      console.log(`${s.at(window.left)} !== ${s.at(window.right)}`);
+      return false;
+    }
+
+    window.left++;
+    window.right++;
+  }
+  return true;
 }

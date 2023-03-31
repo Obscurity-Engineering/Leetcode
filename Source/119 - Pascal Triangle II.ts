@@ -19,6 +19,20 @@ export function getRow_Zach(rowIndex: number): number[] {
 }
 
 export function getRow_Grey(rowIndex: number): number[] {
-  rowIndex;
-  return [];
+  const finalRowLength = rowIndex + 1;
+  const row: number[] = Array(finalRowLength);
+  let previousValue = 1;
+
+  for (let rowLength = 1; rowLength <= finalRowLength; rowLength++) {
+  
+    for (let column = 0; column < rowLength; column++) {
+      const currentValue = row[column] ?? 0;
+      row[column] = previousValue + currentValue;
+      previousValue = currentValue;
+    }
+    previousValue = 0;
+  
+  }
+
+  return row;
 }

@@ -22,6 +22,11 @@ export function maxProfit_Zach(prices: number[]): number {
 }
 
 export function maxProfit_Grey(prices: number[]): number {
-  prices;
-  return 0;
+  let localMinimum = Infinity;
+  let profit = 0;
+  for (const price of prices) {
+    localMinimum = Math.min(localMinimum, price);
+    profit = Math.max(profit, price - localMinimum);
+  }
+  return profit;
 }

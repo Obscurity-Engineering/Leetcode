@@ -18,6 +18,17 @@ export function generate_Zach(numRows: number): number[][] {
 }
 
 export function generate_Grey(numRows: number): number[][] {
-  numRows;
-  return [];
+  const rows: number[][] = Array(numRows);
+
+  for (let row = 0; row < numRows; row++) {
+    rows[row] = Array(row + 1);
+    rows[row][0] = 1;
+    for (let column = 0; column < row; column++) {
+      const left = rows[row - 1][column];
+      const top = rows[row - 1][column + 1] ?? 0;
+      rows[row][column + 1] = left + top;
+    }
+  }
+
+  return rows;
 }
