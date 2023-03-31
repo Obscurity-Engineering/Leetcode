@@ -1,4 +1,3 @@
-import deepClone from 'deep-clone';
 
 export type OptionalTreeNode = TreeNode | null;
 
@@ -13,47 +12,80 @@ export class TreeNode {
   }
 }
 
+/**
+ * {@link https://github.com/gaastonsr/treevis/blob/master/tree/treeFromArray.js | Source}
+ * @remarks
+ * Didn't want to implement it myself.
+ */
 export function toBinaryTree(data: (number | null)[]) {
-  const dataCopy = deepClone(data);
-  balanceTreeWithNulls(dataCopy);
-  return toBinaryTreeInner(dataCopy, 0);
-}
+  if (data.length === 0)
+    return null;
 
-function balanceTreeWithNulls(data: (number | null)[]): void {
-  let depth = 0;
-  let startIndex = Math.pow(2, depth) - 1;
-  let width = Math.pow(2, depth);
-  while (data[startIndex + width] !== undefined) {
-    for (let i = startIndex; i < startIndex + width; i++) {
-      const value = data[i];
-      if (value === null) {
-        data.splice(i + width, 0, null, null);
+  let nextItem = 0;
+  const root = new TreeNode(data[nextItem++] ?? undefined);
+  const queue = [root];
+
+  while (queue.length > 0 && nextItem < data.length) {
+    const current = queue.shift();
+    if (current === undefined)
+      throw new Error('Unexpected missing element');
+
+    if (nextItem < data.length) {
+      const item = data[nextItem++];
+
+      if (item !== null) {
+        const node = new TreeNode(item);
+        current.left = node;
+        queue.push(node);
       }
     }
 
-    depth += 1;
-    startIndex = Math.pow(2, depth) - 1;
-    width = Math.pow(2, depth);
+    if (nextItem < data.length) {
+      const item = data[nextItem++];
+
+      if (item !== null) {
+        const node = new TreeNode(item);
+        current.right = node;
+        queue.push(node);
+      }
+    }
   }
+
+  return root;
 }
 
-function toBinaryTreeInner(
-  data: (number | null)[], 
-  index: number
-): TreeNode | null {
-  const value = data[index]; 
-  if (value === null || value === undefined) 
-    return null;
-  
-  const depth = Math.floor(Math.log2(index + 1));
-  const levelWidth = Math.pow(2, depth);
-  const nextLevelOffset = 2 * (index - levelWidth + 1);
-  const nextLevelIndex = 2 * levelWidth - 1;
-  const childrenIndex = nextLevelIndex + nextLevelOffset;
+export function isBinarySearchTree(root: OptionalTreeNode): boolean {
+  const asArray = traverseInOrder(root);
+  for (let i = 0; i < asArray.length; i++) {
+    if (asArray[i] > asArray[i + 1])
+      return false;
+  }
+  return true;
+}
 
-  return new TreeNode(
-    value,
-    toBinaryTreeInner(data, childrenIndex),
-    toBinaryTreeInner(data, childrenIndex + 1)
-  );
+export function isBalanced(root: OptionalTreeNode): boolean {
+  const isBalanced = (root: OptionalTreeNode): [boolean, number] => {
+    if (root === null)
+      return [true, 0];
+
+    const [leftIsBalanced, leftHeight] = isBalanced(root.left);
+    const [rightIsBalanced, rightHeight] = isBalanced(root.right);
+
+    return [
+      leftIsBalanced && rightIsBalanced && Math.abs(leftHeight - rightHeight) <= 1,
+      Math.max(leftHeight, rightHeight) + 1
+    ];
+  };
+  return isBalanced(root)[0];
+}
+
+export function traverseInOrder(root: OptionalTreeNode): number[] {
+  if (root === null)
+    return [];
+
+  return [
+    ...traverseInOrder(root.left),
+    root.val,
+    ...traverseInOrder(root.right)
+  ];
 }
