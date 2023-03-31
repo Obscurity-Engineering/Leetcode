@@ -14,8 +14,23 @@ import { OptionalTreeNode, TreeNode } from './common/BinaryTree';
 export type SortedArrayToBST = (nums: number[]) => OptionalTreeNode;
 
 export function sortedArrayToBST_Zach(nums: number[]): OptionalTreeNode {
-  nums;
-  return null;
+  if (nums.length === 0)
+    return null;
+
+  return buildBST(nums, 0, nums.length - 1);
+}
+
+function buildBST(nums: number[], start: number, end: number): TreeNode | null {
+  if(start > end)
+    return null;
+  
+  const middleIndex = Math.floor((start + end) / 2);
+
+  const root = new TreeNode(nums[middleIndex]);
+  root.left = buildBST(nums, start, middleIndex - 1);
+  root.right = buildBST(nums, middleIndex + 1, end);
+
+  return root;
 }
 
 export function sortedArrayToBST_Grey(nums: number[]): OptionalTreeNode {

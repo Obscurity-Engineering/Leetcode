@@ -1,4 +1,4 @@
-import { OptionalTreeNode } from './common/BinaryTree';
+import { OptionalTreeNode, TreeNode } from './common/BinaryTree';
 /**
  * {@link https://leetcode.com/problems/maximum-depth-of-binary-tree/ | Max Depth of Binary Tree}
  * Given the root of a binary tree, return its maximum depth.
@@ -11,9 +11,11 @@ import { OptionalTreeNode } from './common/BinaryTree';
  */
 export type MaxDepth = (root: OptionalTreeNode) => number;
 
-export function maxDepth_Zach(root: OptionalTreeNode): number {
-  root;
-  return 0;
+export function maxDepth_Zach(root: TreeNode | null): number {
+  if (root === null)
+    return 0;
+
+  return 1 + Math.max(maxDepth_Zach(root.left), maxDepth_Zach(root.right));
 }
 
 export function maxDepth_Grey(root: OptionalTreeNode): number {
