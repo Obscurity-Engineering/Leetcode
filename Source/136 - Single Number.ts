@@ -21,6 +21,5 @@ export function singleNumber_Zach(nums: number[]): number {
 }
 
 export function singleNumber_Grey(nums: number[]): number {
-  nums;
-  return 0;
+  return nums.reduce((collector, value) => collector ^ value);
 }
