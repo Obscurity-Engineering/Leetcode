@@ -19,9 +19,14 @@ export function hasPathSum_Zach(
   root: OptionalTreeNode, 
   targetSum: number
 ): boolean {
-  root;
-  targetSum;
-  return false;
+  if (root === null) 
+    return false;
+    
+  if (root.left === null && root.right === null) 
+    return root.val === targetSum;
+
+  return hasPathSum_Zach(root.left, targetSum - root.val) || 
+    hasPathSum_Zach(root.right, targetSum - root.val);
 }
 
 export function hasPathSum_Grey(

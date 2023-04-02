@@ -16,7 +16,39 @@ import { OptionalTreeNode } from './common/BinaryTree';
 export type MinDepth = (root: OptionalTreeNode) => number;
 
 export function minDepth_Zach(root: OptionalTreeNode): number {
-  root;
+  if (root === null)
+    return 0;
+
+  // Make an object to attach a node to its depth
+  const queueElement = {
+    node: root,
+    depth: 1
+  };
+
+  // Use a queue for level order traversal (BFS)
+  const queue = [queueElement];
+
+  let currentQueueItem = queue.shift();
+  while (currentQueueItem !== undefined) {
+    const currentNode = currentQueueItem.node;
+    const depth = currentQueueItem.depth;
+    const left = currentNode.left;
+    const right = currentNode.right;
+
+    // Return the depth of the current node pulled from the queue if it is a leaf node (happens on the first leaf)
+    if (left === null && right === null)
+      return depth;
+
+    if (left !== null) {
+      queue.push({node: left, depth: depth + 1});
+    }
+      
+    if (right !== null)
+      queue.push({node: right, depth: depth + 1});
+
+    currentQueueItem = queue.shift();
+  }
+
   return 0;
 }
 
