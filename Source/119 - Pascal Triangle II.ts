@@ -14,8 +14,27 @@
 export type GetRow = (rowIndex: number) => number[];
 
 export function getRow_Zach(rowIndex: number): number[] {
-  rowIndex;
-  return [];
+  if(rowIndex === 0)
+    return [1];
+
+  const pascalTriangle: number[][] = [[1], [1,1]]; 
+  
+  for(let rowNumber = 2; rowNumber <= rowIndex; rowNumber++) {
+    const rowSize = rowNumber + 1;
+    const newRow: number[] = [1]; 
+
+    for(let index = 1; index < rowSize - 1; index++) {
+      const currentValue = pascalTriangle[rowNumber - 1][index - 1] + pascalTriangle[rowNumber - 1][index]; 
+      newRow.push(currentValue);
+    }
+    
+    newRow.push(1); 
+    pascalTriangle.push(newRow);
+  }
+
+  console.log(pascalTriangle);
+
+  return pascalTriangle[rowIndex];
 }
 
 export function getRow_Grey(rowIndex: number): number[] {
