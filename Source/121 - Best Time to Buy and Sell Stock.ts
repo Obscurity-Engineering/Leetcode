@@ -17,8 +17,22 @@
 export type MaxProfit = (prices: number[]) => number;
 
 export function maxProfit_Zach(prices: number[]): number {
-  prices;
-  return 0;
+  if(prices.length < 2)
+    return 0;
+
+  let minimumPrice = prices[0];
+  let maximumProfit = prices[1] - prices[0];
+
+  for(let index = 1; index < prices.length; index++) {
+    const tentativeProfit = prices[index] - minimumPrice;
+    maximumProfit = Math.max(tentativeProfit, maximumProfit);
+    minimumPrice = Math.min(prices[index], minimumPrice);
+  }
+
+  if(maximumProfit < 0) 
+    maximumProfit = 0;
+
+  return maximumProfit;
 }
 
 export function maxProfit_Grey(prices: number[]): number {

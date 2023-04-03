@@ -16,8 +16,19 @@
 export type IsPalindrome = (s: string) => boolean;
 
 export function isPalindrome_Zach(s: string): boolean {
-  s;
-  return false;
+  const alphanumeric = s.replace(/[^a-z0-9]/gi, '').toLowerCase();
+
+  // Two Pointer Character Comparison
+  let left = 0;
+  let right = alphanumeric.length - 1;
+  while (left < right) {
+    if(alphanumeric[left] !== alphanumeric[right])
+      return false;
+    left++;
+    right--;
+  }
+
+  return true;
 }
 
 export function isPalindrome_Grey(s: string): boolean {

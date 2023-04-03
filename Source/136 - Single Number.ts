@@ -16,8 +16,11 @@
 export type SingleNumber = (nums: number[]) => number;
 
 export function singleNumber_Zach(nums: number[]): number {
-  nums;
-  return 0;
+  const result = nums.reduce(
+    (bitwiseAccumulator, currentValue) => bitwiseAccumulator ^ currentValue
+  );
+
+  return result;
 }
 
 export function singleNumber_Grey(nums: number[]): number {
