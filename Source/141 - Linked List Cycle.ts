@@ -17,7 +17,20 @@ import { OptionalNode } from './common/LinkedList';
 export type HasCycle = (head: OptionalNode) => boolean;
 
 export function hasCycle_Zach(head: OptionalNode): boolean {
-  head;
+  if(head === null)
+    return false;
+
+  const visitedMap = new Map<OptionalNode, boolean>();
+  let currentNode: OptionalNode = head;
+
+  while(currentNode !== null) {
+    if(visitedMap.has(currentNode))
+      return true;
+    
+    visitedMap.set(currentNode, true);
+    currentNode = currentNode.next;
+  }
+
   return false;
 }
 

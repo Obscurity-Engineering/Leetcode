@@ -31,10 +31,20 @@ import { OptionalNode } from './common/LinkedList';
  */
 export type GetIntersectionNode = (headA: OptionalNode, headB: OptionalNode) => OptionalNode;
 
+// 1000% looked this solution up
 export function getIntersectionNode_Zach(headA: OptionalNode, headB: OptionalNode): OptionalNode {
-  headA;
-  headB;
-  return null;
+  if (headA === null || headB === null)
+    return null;
+
+  let pointerA: OptionalNode = headA;
+  let pointerB: OptionalNode = headB;
+
+  while (pointerA !== pointerB) {
+    pointerA = pointerA === null ? headB : pointerA.next;
+    pointerB = pointerB === null ? headA : pointerB.next;
+  }
+
+  return pointerA;
 }
 
 export function getIntersectionNode_Grey(headA: OptionalNode, headB: OptionalNode): OptionalNode {

@@ -15,13 +15,24 @@
  * ...
  * 
  * Constraints:
- * - 1 \<= columnNumber \<= 231 - 1
+ * - 1 \<= columnNumber \<= 2^31 - 1
  */
 export type ConvertToTitle = (columnNumber: number) => string;
 
+// No idea on this one
 export function convertToTitle_Zach(columnNumber: number): string {
-  columnNumber;
-  return '';
+
+  let columnTitle = '';
+
+  while(columnNumber > 0) {
+    columnNumber--;
+    const charCode = columnNumber % 26;
+    const letter = String.fromCharCode(65 + charCode);
+    columnTitle = letter + columnTitle;
+    columnNumber = (columnNumber - charCode) / 26; // Not sure why I needed to subtract charCode for my solution to work
+  }
+
+  return columnTitle;
 }
 
 export function convertToTitle_Grey(columnNumber: number): string {

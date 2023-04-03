@@ -1,4 +1,4 @@
-import { OptionalTreeNode } from './common/BinaryTree';
+import { OptionalTreeNode, TreeNode } from './common/BinaryTree';
 /**
  * {@link https://leetcode.com/problems/binary-tree-preorder-traversal/ | Binary Tree Preorder Traversal}
  * 
@@ -11,8 +11,22 @@ import { OptionalTreeNode } from './common/BinaryTree';
 export type PreorderTraversal = (root: OptionalTreeNode) => number[];
 
 export function preorderTraversal_Zach(root: OptionalTreeNode): number[] {
-  root;
-  return [];
+  const traversalValues: number[] = [];
+  if(root !== null)
+    preorderHelper(root, traversalValues);
+  
+  return traversalValues;
+}
+
+function preorderHelper(root: TreeNode, traversalValues: number[]): void {
+  if(root.val !== null)
+    traversalValues.push(root.val);
+
+  if(root.left !== null)
+    preorderHelper(root.left, traversalValues);
+
+  if(root.right !== null) 
+    preorderHelper(root.right, traversalValues); 
 }
 
 export function preorderTraversal_Grey(root: OptionalTreeNode): number[] {
