@@ -32,8 +32,6 @@ export function getRow_Zach(rowIndex: number): number[] {
     pascalTriangle.push(newRow);
   }
 
-  console.log(pascalTriangle);
-
   return pascalTriangle[rowIndex];
 }
 
@@ -43,14 +41,12 @@ export function getRow_Grey(rowIndex: number): number[] {
   let previousValue = 1;
 
   for (let rowLength = 1; rowLength <= finalRowLength; rowLength++) {
-  
     for (let column = 0; column < rowLength; column++) {
       const currentValue = row[column] ?? 0;
       row[column] = previousValue + currentValue;
       previousValue = currentValue;
     }
     previousValue = 0;
-  
   }
 
   return row;

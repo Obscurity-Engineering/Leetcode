@@ -1,4 +1,4 @@
-import { IsPalindrome, isPalindrome_Grey } from './125 - Valid Palindrome';
+import { IsPalindrome, isPalindrome_Grey, isPalindrome_Zach } from './125 - Valid Palindrome';
 import { testSolutions } from './common/Test';
 
 testSolutions({
@@ -9,7 +9,7 @@ testSolutions({
   ],
   descriptor: 'The string %p is a palindrome: %p',
   solutions: [
-    // ['Zach\'s isPalindrome', isPalindrome_Zach ],
+    ['Zach\'s isPalindrome', isPalindrome_Zach ],
     ['Grey\'s isPalindrome', isPalindrome_Grey ],
   ],
   tester: (isPalindrome: IsPalindrome) =>
