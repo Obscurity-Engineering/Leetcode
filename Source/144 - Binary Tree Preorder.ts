@@ -30,6 +30,52 @@ function preorderHelper(root: TreeNode, traversalValues: number[]): void {
 }
 
 export function preorderTraversal_Grey(root: OptionalTreeNode): number[] {
-  root;
-  return [];
+  function traverse(root: OptionalTreeNode): number[] {
+    if (root === null)
+      return [];
+    
+    return [
+      root.val,
+      ...traverse(root.left),
+      ...traverse(root.right)
+    ];
+  }
+
+  return traverse(root);
+}
+
+// Discuss Morris Traversal
+export function preorderTraversal_Grey_NoExtraMem(root: OptionalTreeNode): number[] {
+  const values = [] as number[];
+  
+  function preorderTraverse(current: TreeNode): TreeNode | null {
+    const {left, right} = current;
+
+    if (left === null) {
+      values.push(current.val);
+      return right;
+    }
+
+    let inorderPredecessor = left;
+    while (
+      inorderPredecessor.right !== null && 
+      inorderPredecessor.right !== current
+    ) {
+      inorderPredecessor = inorderPredecessor.right;
+    }
+
+    if (inorderPredecessor.right !== current) {
+      values.push(current.val);
+      inorderPredecessor.right = current;
+      return left;
+    }
+
+    inorderPredecessor.right = null;
+    return right;
+  }
+
+  while (root !== null) {
+    root = preorderTraverse(root);
+  }
+  return values;
 }

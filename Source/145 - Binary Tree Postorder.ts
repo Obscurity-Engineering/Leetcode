@@ -31,6 +31,16 @@ function postorderHelper(root: TreeNode, traversalValues: number[]): void {
 }
 
 export function postorderTraversal_Grey(root: OptionalTreeNode): number[] {
-  root;
-  return [];
+  function traverse(root: OptionalTreeNode): number[] {
+    if (root === null)
+      return [];
+      
+    return [
+      ...traverse(root.left),
+      ...traverse(root.right),
+      root.val
+    ];
+  }
+  
+  return traverse(root);
 }

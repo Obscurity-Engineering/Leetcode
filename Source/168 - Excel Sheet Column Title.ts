@@ -36,6 +36,15 @@ export function convertToTitle_Zach(columnNumber: number): string {
 }
 
 export function convertToTitle_Grey(columnNumber: number): string {
-  columnNumber;
-  return '';
+  const A = 'A'.charCodeAt(0);
+  const Z = 'Z'.charCodeAt(0);
+  const alphabetLength = Z - A + 1;
+  const characters = [];
+  for (
+    let i = columnNumber - 1; i >= 0; i = Math.floor(i / alphabetLength) - 1
+  ) {
+    characters.push(String.fromCharCode(A + i % alphabetLength));
+  }
+
+  return characters.reverse().join('');
 }

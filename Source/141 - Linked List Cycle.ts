@@ -35,6 +35,14 @@ export function hasCycle_Zach(head: OptionalNode): boolean {
 }
 
 export function hasCycle_Grey(head: OptionalNode): boolean {
-  head;
+  let [fastPointer, slowPointer] = [head?.next ?? null, head];
+  while (fastPointer !== null && slowPointer !== null) {
+    if (fastPointer === slowPointer)
+      return true;
+    
+    fastPointer = fastPointer.next?.next ?? null;
+    slowPointer = slowPointer.next;
+  }
+
   return false;
 }

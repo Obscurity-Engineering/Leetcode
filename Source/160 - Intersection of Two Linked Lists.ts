@@ -47,8 +47,22 @@ export function getIntersectionNode_Zach(headA: OptionalNode, headB: OptionalNod
   return pointerA;
 }
 
-export function getIntersectionNode_Grey(headA: OptionalNode, headB: OptionalNode): OptionalNode {
-  headA;
-  headB;
-  return null;
+export function getIntersectionNode_Grey(
+  headA: OptionalNode, 
+  headB: OptionalNode
+): OptionalNode {
+  if (headA === null || headB === null)
+    return null;
+  
+  let [pointerA, pointerB] = [headA, headB];
+
+  while (pointerA !== pointerB) {
+    if (pointerA?.next === null && pointerB?.next === null)
+      return null;
+      
+    pointerA = pointerA?.next ?? headB;
+    pointerB = pointerB?.next ?? headA;
+  }
+
+  return pointerA;
 }
