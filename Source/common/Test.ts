@@ -4,7 +4,7 @@ type Data = ReturnType<typeof deepClone>;
 
 export function testSolutions<Solution, TestCase extends Data[]>(
   properties: {
-    cases: TestCase[];
+    cases?: TestCase[];
     descriptor: string;
     tester: (solution: Solution) => (...args: TestCase) => void;
     solutions: [string, Solution][];
@@ -19,7 +19,7 @@ export function testSolutions<Solution, TestCase extends Data[]>(
 
   solutions.map(([name, solution]) => 
     describe(name, () => {
-      test.each(deepClone(cases))(descriptor, tester(solution));
+      test.each(deepClone(cases ?? []))(descriptor, tester(solution));
     })
   );
 }
