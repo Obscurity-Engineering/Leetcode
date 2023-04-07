@@ -21,8 +21,23 @@
 export type IsHappy = (n: number) => boolean;
 
 export function isHappy_Grey(n: number): boolean {
-  n;
-  return false;
+  const memory = new Set();
+
+  let value = n;
+  while (value !== 1) {
+    memory.add(value);
+    value = value
+      .toString(10)
+      .split('')
+      .map(a => Number.parseInt(a))
+      .map(a => Math.pow(a, 2))
+      .reduce((a, b) => a + b);
+
+    if (memory.has(value))
+      return false;
+  }
+
+  return true;
 }
 
 export function isHappy_Zach(n: number): boolean {
