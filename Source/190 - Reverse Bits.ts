@@ -9,8 +9,15 @@
 export type ReverseBits = (n: number) => number;
 
 export function reverseBits_Grey(n: number): number {
-  n;
-  return 0;
+  return Number.parseInt(
+    n
+      .toString(2)
+      .padStart(32, '0')
+      .split('')
+      .reverse()
+      .join(''), 
+    2
+  );
 }
 
 export function reverseBits_Zach(n: number): number {

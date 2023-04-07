@@ -24,8 +24,15 @@
 export type TitleToNumber = (columnTitle: string) => number;
 
 export function titleToNumber_Grey(columnTitle: string): number {
-  columnTitle;
-  return 0;
+  const A = 'A'.charCodeAt(0);
+  let factor = 1;
+  let sum = 0;
+  for (let i = columnTitle.length - 1; i >= 0; i--) {
+    const character = columnTitle.charCodeAt(i);
+    sum += (character - A + 1) * factor;
+    factor *= 26;
+  }
+  return sum;
 }
 
 export function titleToNumber_Zach(columnTitle: string): number {

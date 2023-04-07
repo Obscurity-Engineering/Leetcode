@@ -6,12 +6,15 @@
  * 
  * Constraints:
  * - The input must be a **binary string** of length `32`
+ * 
+ * @remarks
+ * A faster algorithm could be created up using precomputed bitmasks similar to 
+ * what we do in mpeg/jpeg calculations. 
  */
 export type HammingWeight = (n: number) => number;
 
 export function hammingWeight_Grey(n: number): number {
-  n;
-  return 0;
+  return n.toString(2).split('').filter(a => a === '1').length;
 }
 
 export function hammingWeight_Zach(n: number): number {
