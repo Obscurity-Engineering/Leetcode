@@ -17,11 +17,32 @@ import { OptionalNode } from './common/LinkedList';
 export type HasCycle = (head: OptionalNode) => boolean;
 
 export function hasCycle_Zach(head: OptionalNode): boolean {
-  head;
+  if(head === null)
+    return false;
+
+  const visitedMap = new Map<OptionalNode, boolean>();
+  let currentNode: OptionalNode = head;
+
+  while(currentNode !== null) {
+    if(visitedMap.has(currentNode))
+      return true;
+    
+    visitedMap.set(currentNode, true);
+    currentNode = currentNode.next;
+  }
+
   return false;
 }
 
 export function hasCycle_Grey(head: OptionalNode): boolean {
-  head;
+  let [fastPointer, slowPointer] = [head?.next ?? null, head];
+  while (fastPointer !== null && slowPointer !== null) {
+    if (fastPointer === slowPointer)
+      return true;
+    
+    fastPointer = fastPointer.next?.next ?? null;
+    slowPointer = slowPointer.next;
+  }
+
   return false;
 }

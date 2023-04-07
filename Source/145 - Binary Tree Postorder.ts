@@ -1,4 +1,4 @@
-import { OptionalTreeNode } from './common/BinaryTree';
+import { OptionalTreeNode, TreeNode } from './common/BinaryTree';
 /**
  * {@link https://leetcode.com/problems/binary-tree-postorder-traversal/ | Binary Tree Postorder Traversal}
  * 
@@ -11,11 +11,36 @@ import { OptionalTreeNode } from './common/BinaryTree';
 export type PostorderTraversal = (root: OptionalTreeNode) => number[];
 
 export function postorderTraversal_Zach(root: OptionalTreeNode): number[] {
-  root;
-  return [];
+  const traversalValues: number[] = [];
+  if (root !== null)
+    postorderHelper(root, traversalValues);
+
+  return traversalValues;
+}
+
+function postorderHelper(root: TreeNode, traversalValues: number[]): void {
+
+  if (root.left !== null)
+    postorderHelper(root.left, traversalValues);
+
+  if (root.right !== null)
+    postorderHelper(root.right, traversalValues);
+
+  if (root.val !== null)
+    traversalValues.push(root.val);
 }
 
 export function postorderTraversal_Grey(root: OptionalTreeNode): number[] {
-  root;
-  return [];
+  function traverse(root: OptionalTreeNode): number[] {
+    if (root === null)
+      return [];
+      
+    return [
+      ...traverse(root.left),
+      ...traverse(root.right),
+      root.val
+    ];
+  }
+  
+  return traverse(root);
 }
