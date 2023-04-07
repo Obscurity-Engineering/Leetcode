@@ -21,11 +21,42 @@
 export type IsHappy = (n: number) => boolean;
 
 export function isHappy_Grey(n: number): boolean {
-  n;
-  return false;
+  const memory = new Set();
+
+  let value = n;
+  while (value !== 1) {
+    memory.add(value);
+    value = value
+      .toString(10)
+      .split('')
+      .map(a => Number.parseInt(a))
+      .map(a => Math.pow(a, 2))
+      .reduce((a, b) => a + b);
+
+    if (memory.has(value))
+      return false;
+  }
+
+  return true;
 }
 
 export function isHappy_Zach(n: number): boolean {
-  n;
-  return false;
+  let currentNumber = n;
+  const previousNumbers: Set<number> = new Set<number>();
+
+  while (currentNumber !== 1) {
+    if (previousNumbers.has(currentNumber))
+      return false;
+
+    previousNumbers.add(currentNumber);
+    let newNumber = 0;
+
+    for (let digitPlace = 0; digitPlace < currentNumber.toString().length; digitPlace++) {
+      newNumber += Math.floor((currentNumber / (10 ** digitPlace)) % 10) ** 2;
+    }
+
+    currentNumber = newNumber;
+  }
+
+  return true;
 }

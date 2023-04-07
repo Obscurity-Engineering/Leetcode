@@ -14,11 +14,37 @@
 export type MajorityElement = (nums: number[]) => number;
 
 export function majorityElement_Grey(nums: number[]): number {
-  nums;
-  return 0;
+  let candidate = nums[0] + 1;
+  let candidateStrength = 1;
+
+  nums.forEach(value => {
+    candidateStrength += value === candidate ? 1 : -1;
+
+    if (candidateStrength === 0) {
+      candidateStrength = 1;
+      candidate = value;
+    }
+  });
+
+  return candidate;
 }
 
+
+
 export function majorityElement_Zach(nums: number[]): number {
-  nums;
-  return 0;
+  const frequencyCounter = new Map<number, number>();
+
+  for (let index = 0; index < nums.length; index++) {
+    const currentValue = nums[index];
+    frequencyCounter.set(currentValue, (frequencyCounter.get(currentValue) ?? 0) + 1);
+  }
+
+  for (const [key, value] of frequencyCounter) {
+    if (value > nums.length / 2) {
+      return key;
+    }
+  }
+
+  return 0; // Case that never happens
+
 }
