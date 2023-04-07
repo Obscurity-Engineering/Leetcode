@@ -29,6 +29,12 @@ export function titleToNumber_Grey(columnTitle: string): number {
 }
 
 export function titleToNumber_Zach(columnTitle: string): number {
-  columnTitle;
-  return 0;
+  let columnNumber = 0;
+
+  for (let index = 0; index < columnTitle.length; index++) {
+    const charCode = columnTitle.charCodeAt(index) - 65 + 1;
+    columnNumber = (columnNumber * 26) + charCode;
+  }
+
+  return columnNumber;
 }

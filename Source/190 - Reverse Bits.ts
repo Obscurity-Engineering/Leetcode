@@ -14,6 +14,9 @@ export function reverseBits_Grey(n: number): number {
 }
 
 export function reverseBits_Zach(n: number): number {
-  n;
-  return 0;
+  const binaryString = n.toString(2);
+  const binaryArray = binaryString.split('');
+  const reversedArray = binaryArray.reverse();
+  const reversedString = reversedArray.join('');
+  return parseInt(reversedString.padEnd(32, '0'), 2);
 }

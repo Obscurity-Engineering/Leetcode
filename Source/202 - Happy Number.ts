@@ -26,6 +26,22 @@ export function isHappy_Grey(n: number): boolean {
 }
 
 export function isHappy_Zach(n: number): boolean {
-  n;
-  return false;
+  let currentNumber = n;
+  const previousNumbers: Set<number> = new Set<number>();
+
+  while (currentNumber !== 1) {
+    if (previousNumbers.has(currentNumber))
+      return false;
+
+    previousNumbers.add(currentNumber);
+    let newNumber = 0;
+
+    for (let digitPlace = 0; digitPlace < currentNumber.toString().length; digitPlace++) {
+      newNumber += Math.floor((currentNumber / (10 ** digitPlace)) % 10) ** 2;
+    }
+
+    currentNumber = newNumber;
+  }
+
+  return true;
 }

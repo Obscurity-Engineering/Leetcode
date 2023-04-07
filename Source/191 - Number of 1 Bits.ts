@@ -15,6 +15,7 @@ export function hammingWeight_Grey(n: number): number {
 }
 
 export function hammingWeight_Zach(n: number): number {
-  n;
-  return 0;
+  let returnString = n.toString(2);
+  returnString = returnString.replace(/0/g, '');
+  return returnString.length;
 }

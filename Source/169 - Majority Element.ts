@@ -18,7 +18,22 @@ export function majorityElement_Grey(nums: number[]): number {
   return 0;
 }
 
+
+
 export function majorityElement_Zach(nums: number[]): number {
-  nums;
-  return 0;
+  const frequencyCounter = new Map<number, number>();
+
+  for (let index = 0; index < nums.length; index++) {
+    const currentValue = nums[index];
+    frequencyCounter.set(currentValue, (frequencyCounter.get(currentValue) ?? 0) + 1);
+  }
+
+  for (const [key, value] of frequencyCounter) {
+    if (value > nums.length / 2) {
+      return key;
+    }
+  }
+
+  return 0; // Case that never happens
+
 }
