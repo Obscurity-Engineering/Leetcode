@@ -11,8 +11,7 @@
 export type ContainsDuplicate = (nums: number[]) => boolean;
 
 export function containsDuplicate_Grey(nums: number[]): boolean {
-  nums;
-  return false;
+  return new Set(nums).size !== nums.length;
 }
 
 export function containsDuplicate_Zach(nums: number[]): boolean {

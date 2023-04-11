@@ -17,9 +17,36 @@ export function removeElements_Grey(
   head: OptionalNode, 
   val: number
 ): OptionalNode {
-  head;
-  val;
-  return null;
+  if ( head === null)
+    return null;
+
+  let currentNode: OptionalNode = head;
+  let firstValidNode: OptionalNode = null;
+  let previousValidNode: OptionalNode = null;
+
+  while (currentNode !== null && currentNode.val === val) {
+    currentNode = currentNode.next;
+  }
+
+  if (currentNode === null)
+    return null;
+
+  firstValidNode = currentNode;
+  previousValidNode = currentNode;
+
+  currentNode = currentNode.next;
+
+  while (currentNode !== null) {
+    if (currentNode.val !== val) {
+      previousValidNode.next = currentNode;
+      previousValidNode = currentNode;
+    }
+    currentNode = currentNode.next;
+  }
+
+  previousValidNode.next = null;
+  
+  return firstValidNode;
 }
 
 export function removeElements_Zach(

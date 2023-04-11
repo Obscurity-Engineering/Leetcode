@@ -18,9 +18,26 @@
 export type IsIsomorphic = (s: string, t: string) => boolean;
 
 export function isIsomorphic_Grey(s: string, t: string): boolean {
-  s;
-  t;
-  return false;
+  const sLookup = new Map<string, number>();
+  const tLookup = new Map<string, number>();
+  let patternIdCounter = 0;
+
+  for (let index = 0; index < s.length; index++) {
+    const sCharacter = s.charAt(index);
+    const tCharacter = t.charAt(index);
+    const sPatternId = sLookup.get(sCharacter);
+    const tPatternId = tLookup.get(tCharacter);  
+    if (sPatternId !== tPatternId)
+      return false;
+
+    if (sPatternId === undefined) {
+      patternIdCounter += 1;
+      sLookup.set(sCharacter, patternIdCounter);
+      tLookup.set(tCharacter, patternIdCounter);
+    }
+  }
+
+  return true;
 }
 
 export function isIsomorphic_Zach(s: string, t: string): boolean {
