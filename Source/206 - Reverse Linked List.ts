@@ -38,6 +38,25 @@ export function reverseList_Grey(head: OptionalNode): OptionalNode {
 }
 
 export function reverseList_Zach(head: OptionalNode): OptionalNode {
-  head;
-  return null;
+  if (head === null)
+    return null;
+
+  const stack: ListNode[] = [];
+  let currentNode: OptionalNode = head;
+
+  while(currentNode !== null) {
+    const nextNode: OptionalNode = currentNode.next;
+    currentNode.next = null;
+    stack.push(currentNode);
+    currentNode = nextNode;
+  }
+
+  let reversedNode: ListNode;
+  const newHead = stack.slice(-1)[0];
+
+  while(stack.length > 1) {
+    reversedNode = stack.pop() ?? new ListNode();
+    reversedNode.next = stack.slice(-1)[0];
+  }
+  return newHead;
 }

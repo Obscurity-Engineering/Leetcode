@@ -13,7 +13,7 @@
 export type ContainsNearbyDuplicate = (nums: number[], k: number) => boolean;
 
 export function containsNearbyDuplicate_Grey(
-  nums: number[], 
+  nums: number[],
   k: number
 ): boolean {
   nums;
@@ -22,10 +22,22 @@ export function containsNearbyDuplicate_Grey(
 }
 
 export function containsNearbyDuplicate_Zach(
-  nums: number[], 
+  nums: number[],
   k: number
 ): boolean {
-  nums;
-  k;
+  const visitedNumbers = new Map<number, number>();
+
+  for (let index = 0; index < nums.length; index++) {
+    const currentNumber = nums[index];
+    if (visitedNumbers.has(currentNumber)) {
+      const pastIndex = visitedNumbers.get(currentNumber) ?? 0;
+      const distance = Math.abs(index - pastIndex);
+      if (distance <= k)
+        return true; 
+    } 
+
+    visitedNumbers.set(currentNumber, index);
+  }
+
   return false;
 }
