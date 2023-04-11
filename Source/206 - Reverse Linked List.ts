@@ -55,7 +55,7 @@ export function reverseList_Zach(head: OptionalNode): OptionalNode {
   const newHead = stack.slice(-1)[0];
 
   while(stack.length > 1) {
-    reversedNode = stack.pop() ?? new ListNode();
+    reversedNode = stack.pop()!;
     reversedNode.next = stack.slice(-1)[0];
   }
   return newHead;

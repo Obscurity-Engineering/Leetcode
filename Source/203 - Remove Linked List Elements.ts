@@ -22,7 +22,6 @@ export function removeElements_Grey(
 
   let currentNode: OptionalNode = head;
   let firstValidNode: OptionalNode = null;
-  let previousValidNode: OptionalNode = null;
 
   while (currentNode !== null && currentNode.val === val) {
     currentNode = currentNode.next;
@@ -32,7 +31,7 @@ export function removeElements_Grey(
     return null;
 
   firstValidNode = currentNode;
-  previousValidNode = currentNode;
+  let previousValidNode = currentNode;
 
   currentNode = currentNode.next;
 
@@ -49,7 +48,6 @@ export function removeElements_Grey(
   return firstValidNode;
 }
 
-// Need a second opinion: Is this garbage collected properly?
 export function removeElements_Zach(
   head: OptionalNode,
   val: number
@@ -61,7 +59,6 @@ export function removeElements_Zach(
   let currentNode: OptionalNode = head;
   let previousNode: OptionalNode = null;
   
-
   while (currentNode !== null) {
     if (currentNode.val === val) {
       const nextNode: OptionalNode = currentNode.next;

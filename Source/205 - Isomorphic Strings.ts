@@ -30,7 +30,7 @@ export function isIsomorphic_Grey(s: string, t: string): boolean {
     if (sPatternId !== tPatternId)
       return false;
 
-    if (sPatternId === undefined) {
+    if (sPatternId === undefined && tPatternId === undefined) {
       patternIdCounter += 1;
       sLookup.set(sCharacter, patternIdCounter);
       tLookup.set(tCharacter, patternIdCounter);
