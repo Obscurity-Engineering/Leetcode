@@ -16,12 +16,19 @@ export function containsNearbyDuplicate_Grey(
   nums: number[],
   k: number
 ): boolean {
-  return nums
-    .some((value, index) => ([] as number[]) 
-      .concat(nums.slice(Math.max(index - k, 0), index))
-      .concat(nums.slice(index + 1, index + k + 1))
-      .find(element => element === value) !== undefined
-    );
+  const lastSeenLookup = new Map<number, number>();
+
+  for (let index = 0; index < nums.length; index++) {
+    const value = nums[index];
+    const lastSeenIndex = lastSeenLookup.get(value) ?? -Infinity;
+    const distance = index - lastSeenIndex;
+    if (distance <= k)
+      return true;
+
+    lastSeenLookup.set(value, index);
+  }
+
+  return false;
 }
 
 export function containsNearbyDuplicate_Zach(
