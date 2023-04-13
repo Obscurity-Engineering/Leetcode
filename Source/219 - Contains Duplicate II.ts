@@ -16,9 +16,12 @@ export function containsNearbyDuplicate_Grey(
   nums: number[],
   k: number
 ): boolean {
-  nums;
-  k;
-  return false;
+  return nums
+    .some((value, index) => ([] as number[]) 
+      .concat(nums.slice(Math.max(index - k, 0), index))
+      .concat(nums.slice(index + 1, index + k + 1))
+      .find(element => element === value) !== undefined
+    );
 }
 
 export function containsNearbyDuplicate_Zach(
