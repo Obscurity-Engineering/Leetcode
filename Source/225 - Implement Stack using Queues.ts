@@ -26,23 +26,37 @@
  */
 export interface Stack {
   push(x: number): void;
-  pop(): number;
-  top(): number;
+  pop(): number | undefined;
+  top(): number | undefined;
   empty(): boolean;
 }
 
 export class Stack_Grey implements Stack {
+  constructor(
+    private queue = [] as number[]
+  ) {}
+
   push(x: number): void {
-    x;
+    this.queue.push(x);
   }
-  pop(): number {
-    return 0;
+  pop(): number | undefined {
+    const temporaryQueue: number[] = [];
+    let value = this.queue.shift(); 
+    while (this.queue.length >= 1 && value !== undefined) {
+      temporaryQueue.push(value);
+      value = this.queue.shift();
+    }
+    this.queue = temporaryQueue;
+    return value;
   }
-  top(): number {
-    return 0;
+  top(): number | undefined {
+    const value = this.pop();
+    if (value !== undefined)
+      this.queue.push(value);
+    return value;
   }
   empty(): boolean {
-    return false;
+    return this.queue.length === 0;
   }
 }
 

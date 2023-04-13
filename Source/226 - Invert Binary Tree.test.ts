@@ -1,4 +1,4 @@
-import { InvertTree, invertTree_Grey, invertTree_Zach } from './226 - Invert Binary Tree';
+import { InvertTree, invertTree_Grey_InPlace, invertTree_Grey_NoMutation, invertTree_Zach } from './226 - Invert Binary Tree';
 import { toBinaryTree } from './common/BinaryTree';
 import { testSolutions } from './common/Test';
 
@@ -11,7 +11,8 @@ testSolutions({
   descriptor: 'The tree %p inverted is %p',
   solutions: [
     ['Zach\'s invertTree', invertTree_Zach],
-    ['Grey\'s invertTree', invertTree_Grey],
+    ['Grey\'s invertTree in place', invertTree_Grey_InPlace],
+    ['Grey\'s invertTree no mutation', invertTree_Grey_NoMutation],
   ],
   tester: (invertTree: InvertTree) =>
     (root: number[], expected: number[]) => {
