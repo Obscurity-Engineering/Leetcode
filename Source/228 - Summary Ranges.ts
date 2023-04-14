@@ -23,8 +23,28 @@
 export type SummaryRanges = (nums: number[]) => string[];
 
 export function summaryRanges_Grey(nums: number[]): string[] {
-  nums;
-  return [];
+  if (nums.length === 0)
+    return [];
+
+  let [first, last] = [nums[0], nums[0]];
+  const ranges = [];
+
+  for (let index = 0; index <= nums.length; index++) {
+    const value = nums.at(index) ?? Infinity;
+    [first, last] = function() {
+      if (value <= last + 1)
+        return [first, value];
+
+      if (first === last)
+        ranges.push(`${first}`);
+      else
+        ranges.push(`${first}->${last}`);
+
+      return [value, value];
+    }();
+  }
+
+  return ranges;
 }
 
 export function summaryRanges_Zach(nums: number[]): string[] {

@@ -13,8 +13,7 @@
 export type IsPowerOfTwo = (n: number) => boolean;
 
 export function isPowerOfTwo_Grey(n: number): boolean {
-  n;
-  return false;
+  return n > 0 && (n | n - 1) === (n + n - 1);
 }
 
 export function isPowerOfTwo_Zach(n: number): boolean {
