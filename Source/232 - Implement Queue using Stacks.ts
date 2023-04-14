@@ -26,23 +26,52 @@
  */
 export interface Queue {
   push(x: number): void;
-  pop(): number;
-  peek(): number;
+  pop(): number | undefined;
+  peek(): number | undefined;
   empty(): boolean;
 }
 
 export class Queue_Grey implements Queue {
+  constructor(
+    private stack: number[] = [],
+    private mode: 'raw' | 'reversed' = 'raw'
+  ) {}
+
   push(x: number): void {
-    x;
+    if (this.mode !== 'raw')
+      this.toggleMode();
+
+    this.stack.push(x);
   }
-  pop(): number {
-    return 0;
+  pop(): number | undefined {
+    if (this.mode !== 'reversed')
+      this.toggleMode();
+
+    return this.stack.pop();
   }
-  peek(): number {
-    return 0;
+  peek(): number | undefined {
+    if (this.mode !== 'reversed')
+      this.toggleMode();
+
+    return this.stack.at(-1);
+
   }
   empty(): boolean {
-    return false;
+    return this.stack.length === 0;
+  }
+
+  private toggleMode() {
+    const newStack: number[] = [];
+    for (
+      let value = this.stack.pop(); 
+      value !== undefined; 
+      value = this.stack.pop()
+    ) {
+      newStack.push(value);
+    }
+
+    this.mode = this.mode === 'raw' ? 'reversed' : 'raw';
+    this.stack = newStack;
   }
 }
 
