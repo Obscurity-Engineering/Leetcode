@@ -54,11 +54,10 @@ export function summaryRanges_Zach(nums: number[]): string[] {
     return ranges;
 
   let a = nums[0]; 
-  let b = nums[0];
   let expectedNumber = a + 1; 
 
   for(let index = 1; index < nums.length + 1; index++) {
-    b = nums[index]; 
+    let b = nums[index]; 
     if(b === expectedNumber) {
       expectedNumber = b + 1; 
     } else {
