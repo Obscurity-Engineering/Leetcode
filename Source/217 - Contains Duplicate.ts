@@ -11,11 +11,20 @@
 export type ContainsDuplicate = (nums: number[]) => boolean;
 
 export function containsDuplicate_Grey(nums: number[]): boolean {
-  nums;
-  return false;
+  return new Set(nums).size !== nums.length;
 }
 
 export function containsDuplicate_Zach(nums: number[]): boolean {
-  nums;
+  const visitedNumbers = new Set<number>();
+
+  for(let index = 0; index < nums.length; index++) {
+    if(visitedNumbers.has(nums[index]))
+      return true;
+
+    visitedNumbers.add(nums[index]);
+  }
+
   return false;
 }
+
+// TODO: Talk about the baller solution (Grey probably used it)
