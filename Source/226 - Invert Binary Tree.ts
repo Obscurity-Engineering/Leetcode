@@ -17,6 +17,26 @@ export function invertTree_Grey(root: OptionalTreeNode): OptionalTreeNode {
 }
 
 export function invertTree_Zach(root: OptionalTreeNode): OptionalTreeNode {
-  root;
-  return null;
+  if(root === null)
+    return null;
+  
+  invertHelper(root);
+
+  return root;
+
+}
+
+function invertHelper(root: OptionalTreeNode): void {
+  if(root === null)
+    return;
+  
+  if(root.left !== null)
+    invertHelper(root.left);
+  
+  if(root.right !== null)
+    invertHelper(root.right);
+
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;  
 }

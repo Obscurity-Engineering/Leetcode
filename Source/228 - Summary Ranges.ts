@@ -28,6 +28,27 @@ export function summaryRanges_Grey(nums: number[]): string[] {
 }
 
 export function summaryRanges_Zach(nums: number[]): string[] {
-  nums;
-  return [];
+  const ranges: string[] = [];
+
+  if(nums.length === 0)
+    return ranges;
+
+  let a = nums[0]; 
+  let b = nums[0];
+  let expectedNumber = a + 1; 
+
+  for(let index = 1; index < nums.length + 1; index++) {
+    b = nums[index]; 
+    if(b === expectedNumber) {
+      expectedNumber = b + 1; 
+    } else {
+      b = nums[index - 1]; 
+      const newRange = a === b ?  a.toString(): 
+        a.toString() + '->' + b.toString(); 
+      a = nums[index]; 
+      expectedNumber = a + 1; 
+      ranges.push(newRange);
+    }
+  }
+  return ranges;
 }

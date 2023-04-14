@@ -18,6 +18,13 @@ export function isPowerOfTwo_Grey(n: number): boolean {
 }
 
 export function isPowerOfTwo_Zach(n: number): boolean {
-  n;
-  return false;
+  if(n < 1)
+    return false;
+  
+  let currentValue = n;
+  
+  while(currentValue % 2 === 0) {
+    currentValue /= 2;
+  }
+  return currentValue === 1; 
 }
