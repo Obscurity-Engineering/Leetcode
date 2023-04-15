@@ -10,8 +10,7 @@
 export type AddDigits = (num: number) => number;
 
 export function addDigits_Grey(num: number): number {
-  num;
-  return 0;
+  return ((num - 1) % 9) + 1;
 }
 
 export function addDigits_Zach(num: number): number {
