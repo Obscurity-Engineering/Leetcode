@@ -15,9 +15,26 @@
 export type IsAnagram = (s: string, t: string) => boolean;
 
 export function isAnagram_Grey(s: string, t: string): boolean {
-  s;
-  t;
-  return false;
+  if (s.length !== t.length)
+    return false;
+      
+  const counts = new Map<string, number>();
+    
+  const sCharacters = s.split('');
+  for (const character of sCharacters) {
+    const count = counts.get(character) ?? 0;
+    counts.set(character, count + 1);
+  }
+  
+  const tCharacters = t.split('');
+  for (const character of tCharacters) {
+    const count = counts.get(character) ?? 0;
+    if (count === 0)
+      return false;
+    counts.set(character, count - 1);
+  }
+  
+  return true;
 }
 
 export function isAnagram_Zach(s: string, t: string): boolean {

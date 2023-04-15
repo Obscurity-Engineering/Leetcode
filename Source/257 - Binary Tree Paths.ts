@@ -15,8 +15,18 @@ import { OptionalTreeNode } from './common/BinaryTree';
 export type BinaryTreePaths = (root: OptionalTreeNode) => string[];
 
 export function binaryTreePaths_Grey(root: OptionalTreeNode): string[] {
-  root;
-  return [];
+  return function traverse(root: OptionalTreeNode): string[] {
+    if (root === null)
+      return [];
+
+    if (root.left === null && root.right === null)
+      return [String(root.val)];
+
+    return [
+      ...traverse(root.left).map(path => `${root.val}->${path}`),
+      ...traverse(root.right).map(path => `${root.val}->${path}`),
+    ];
+  }(root);
 }
 
 export function binaryTreePaths_Zach(root: OptionalTreeNode): string[] {

@@ -15,6 +15,6 @@ testSolutions({
   tester: (binaryTreePaths: BinaryTreePaths) =>
     (root: (number | null)[], expected: string[]) => {
       const rootAsTree = toBinaryTree(root);
-      expect(binaryTreePaths(rootAsTree)).toEqual(expected);
+      expect(binaryTreePaths(rootAsTree).sort()).toEqual(expected.sort());
     }
 });
