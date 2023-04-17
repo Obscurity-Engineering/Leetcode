@@ -78,6 +78,26 @@ export function isPalindrome_Grey_NoMemory(head: OptionalNode): boolean {
 }
 
 export function isPalindrome_Zach(head: OptionalNode): boolean {
-  head;
-  return false;
+  const stack: number[] = [];
+
+  let currentNode = head;
+
+  while(currentNode !== null) {
+    stack.push(currentNode.val);
+    currentNode = currentNode.next;
+  }
+
+  currentNode = head;
+  const stackMiddle = Math.floor(stack.length / 2);
+
+  while(stack.length > stackMiddle && currentNode !== null) {
+    const currentVal = stack.pop();
+
+    if(currentVal !== currentNode.val)
+      return false;
+
+    currentNode = currentNode.next;
+  }
+
+  return true;
 }

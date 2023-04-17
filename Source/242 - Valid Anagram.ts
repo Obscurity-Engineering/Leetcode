@@ -38,7 +38,27 @@ export function isAnagram_Grey(s: string, t: string): boolean {
 }
 
 export function isAnagram_Zach(s: string, t: string): boolean {
-  s;
-  t;
-  return false;
+  if(s.length !== t.length)
+    return false;
+
+  const sFrequencyCounter = new Map<string, number>();
+  const tFrequencyCounter = new Map<string, number>();
+
+  for(let index = 0; index < s.length; index++) {
+    const sChar = s[index];
+    const tChar = t[index];
+
+    const currentSFrequency = sFrequencyCounter.get(sChar) || 0;
+    sFrequencyCounter.set(sChar, currentSFrequency + 1);
+
+    const currentTFrequency = tFrequencyCounter.get(tChar) || 0;
+    tFrequencyCounter.set(tChar, currentTFrequency + 1);
+  }
+
+  for(const character of sFrequencyCounter.keys()) {
+    if(sFrequencyCounter.get(character) !== tFrequencyCounter.get(character))
+      return false;
+  }
+
+  return true;
 }

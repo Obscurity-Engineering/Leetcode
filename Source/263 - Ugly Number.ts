@@ -15,7 +15,7 @@
 export type IsUgly = (n: number) => boolean;
 
 export function isUgly_Grey(n: number): boolean {
-  const divideIfPossible = (f: number) => 
+  const divideIfPossible = (f: number) =>
     n = n % f === 0 ? n / f : n;
 
   let previous = Infinity;
@@ -32,6 +32,7 @@ export function isUgly_Grey(n: number): boolean {
 }
 
 export function isUgly_Zach(n: number): boolean {
+  // Attempted this, made a brute force solution that was very ugly. Would need to redo.
   n;
   return false;
 }

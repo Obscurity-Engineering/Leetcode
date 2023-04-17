@@ -14,6 +14,16 @@ export function addDigits_Grey(num: number): number {
 }
 
 export function addDigits_Zach(num: number): number {
-  num;
-  return 0;
+  let nextNum = 0;
+  let numLength = num.toString().length;
+  while(numLength > 0) {
+    nextNum += num % 10;
+    num = Math.floor(num/10);
+    numLength--;
+  }
+
+  if(nextNum.toString().length === 1) 
+    return nextNum;
+  
+  return addDigits_Zach(nextNum);
 }
